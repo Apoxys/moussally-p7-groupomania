@@ -4,10 +4,12 @@ const jwt = require('jsonwebtoken');
 const user = require("../models/usersModel");
 
 exports.signup = (req, res, next) => {
-    bcrypt.hash(req.body.password + `'randomString'`, 10) // how to add a string to password just before hash for max security ?
+    bcrypt.hash(req.body.password, 10) // how to add a string to password just before hash for max security ?
         .then(hash => {
             const thisNewUser = new user({
-                ...req.body,
+                lastName: req.body.lastName,
+                firstName: req.body.firstName,
+                email: req.body.email,
                 password: hash,
                 userLiked: [],
                 userDisliked: [],
@@ -26,7 +28,7 @@ exports.login = (req, res, next) => {
             if (!user) {
                 return res.status(401).json({ error: 'User not found!' })
             }
-            bcrypt.compare(req.body.password + `'randomString'`, user.password)
+            bcrypt.compare(req.body.password, user.password)
                 .then(valid => {
                     if (!valid) {
                         return res.status(401).json({ message: 'wrong password!' })
@@ -37,7 +39,8 @@ exports.login = (req, res, next) => {
                             { userId: user._id },
                             process.env.WEB_AUTH_TOKEN,
                             { expiresIn: '24h' }
-                        )
+                        ),
+                        message: "welcome back"
                     });
                 })
                 .catch(error => res.status(501).json({ error }));
