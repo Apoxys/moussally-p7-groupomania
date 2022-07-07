@@ -6,8 +6,8 @@ const postSchema = mongoose.Schema({
   imageUrl: { type: String, required: false }, //users are not FORCED to upload an image
   likes: { type: Number, required: true },
   dislikes: { type: Number, required: true },
-  author: { type: String, required: true },
   date: { type: String, required: true },
+  authorId: { type: String, required: true },
 });
 
 module.exports = mongoose.model("post", postSchema);

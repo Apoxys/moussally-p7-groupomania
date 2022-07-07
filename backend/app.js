@@ -4,6 +4,9 @@ const helmet = require("helmet");
 const mongoose = require("mongoose");
 const path = require("path");
 
+const postsRoutes = require('./routes/postsRoutes');
+const usersRoutes = require('./routes/usersRoutes');
+
 mongoose
   .connect(
     `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PWD}@cluster0.sg8a7xa.mongodb.net/?retryWrites=true&w=majority`,
@@ -29,14 +32,14 @@ app.use((req, res, next) => {
     "GET, POST, PUT, DELETE, PATCH, OPTIONS"
   );
   res.setHeader("Cross-Origin-Resource-Policy", "same-site");
-  next;
+  next();
 });
 
 app.use(express.json());
 app.use("/images", express.static(path.join(__dirname, "images")));
 
 // to be defined
-// app.use("/api/posts", postsRoutes);
-// app.use("/api/auth", usersRoutes);
+app.use("/api/posts", postsRoutes);
+app.use("/api/auth", usersRoutes);
 
 module.exports = app;

@@ -64,7 +64,7 @@ exports.deletePost = (req, res, next) => {
             if (!post) {
                 return res.status(404).json({ message: 'post not found' })
             }
-            if (post.author !== req.auth.userId && user.isAdmin !== true) {
+            if (post.authorId !== req.auth.userId && user.isAdmin !== true) {
                 return res.status(401).json({ message: 'You cannot suppress this post!' })
             }
             const filename = post.imageUrl.split('/images/')[1];
@@ -77,33 +77,35 @@ exports.deletePost = (req, res, next) => {
         .catch(error => res.status(400).json({ error }));
 };
 
+
+//likes and dislikes
 exports.likes = (req, res, next) => {
     post.findOne({ _id: req.params.id })
         .then((post) => {
             //mise à jour du status like ou dislike
             if (req.body.like == 1) {
                 post.likes++
-                // sauce.usersLiked.push(req.body.userId)
+                // this.user.userLiked.push(post._id)
             }
             else if (req.body.like == -1) {
                 post.dislikes++
-                // sauce.usersDisliked.push(req.body.userId)
+                // this.user.userDisliked.push(post._id)
             }
             else if (req.body.like == 0) {
-                // if (sauce.usersLiked.includes(req.body.userId)) {
-                //     const thisUserIndex = sauce.usersLiked.indexOf(req.body.userId)
-                //     sauce.usersLiked.splice(thisUserIndex, 1)
+                // if (this.userLiked.includes(post._id)) {
+                //     const thisPostIndex = this.userLiked.indexOf(post._id)
+                //     this.userLiked.splice(thisPostIndex, 1)
                 // }
-                // if (sauce.usersDisliked.includes(req.body.userId)) {
-                //     const thisUserIndex = sauce.usersDisliked.indexOf(req.body.userId)
-                //     sauce.usersDisliked.splice(thisUserIndex, 1)
+                // if (sauce.usersDisliked.includes(post._id)) {
+                //     const thisPostIndex = this.userDisliked.indexOf(post._id)
+                //     this.userDisliked.splice(thisPostIndex, 1)
                 // }
-                // logic to check is this post id is in liked array of user
+                // logic to check if this post id is in liked array of user
             }
-            // sauce.likes = sauce.usersLiked.length
-            // sauce.dislikes = sauce.usersDisliked.length
-            // sauce.save()
-            //     .then((sauce) => res.status(200).json({ message: 'likes et dislikes mis à jour' }))
+            // post.likes = post.likes.length
+            // post.dislikes = post.dislikes.length
+            // post.save()
+            //     .then((post) => res.status(200).json({ message: 'likes et dislikes mis à jour' }))
             //     .catch(() => res.status(400).json({ error: new Error }));
         })
         .catch(error => res.status(400).json({ error }));

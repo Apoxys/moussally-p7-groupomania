@@ -6,8 +6,8 @@ const userSchema = mongoose.Schema({
   firstName: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  liked: [], //array of ID of liked posts
-  disliked: [], //array of ID of disliked posts
+  userLiked: [], //array of ID of liked posts
+  userDisliked: [], //array of ID of disliked posts
   isAdmin: { type: Boolean, required: true }
 });
 

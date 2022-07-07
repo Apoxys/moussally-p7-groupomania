@@ -1,4 +1,4 @@
-const https = require("https");
+const http = require("http");
 const app = require("./app");
 
 /**
@@ -6,7 +6,7 @@ const app = require("./app");
  * @param {*} value
  * @returns
  */
-const normalizPort = (value) => {
+const normalizePort = (value) => {
   const port = parseInt(value, 10);
   if (isNaN(port)) {
     return value;
@@ -17,7 +17,7 @@ const normalizPort = (value) => {
   return false;
 };
 
-const port = normalizPort(process.env.PORT || "3000");
+const port = normalizePort(process.env.PORT || "3000");
 app.set("port", port);
 
 /**
@@ -44,7 +44,7 @@ const errorHandler = (error) => {
   }
 };
 
-const server = https.createServer(app);
+const server = http.createServer(app);
 
 server.on("error", errorHandler);
 server.on("linstening", () => {
