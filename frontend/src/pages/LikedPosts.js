@@ -1,13 +1,13 @@
 import React from 'react';
 import Nav from '../components/Nav';
 
-const CreatePost = () => {
+const LikedPosts = () => {
     return (
         <div>
             <Nav />
-            Publiez ici
+            Ici vous retrouverez les posts que vous avez aimés
         </div>
     );
 };
 
-export default CreatePost;
+export default LikedPosts;

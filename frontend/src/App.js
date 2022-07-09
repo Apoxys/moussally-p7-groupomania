@@ -2,9 +2,12 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Actu from "./pages/Actu";
 import CreatePost from "./pages/CreatePost";
+import LikedPosts from "./pages/LikedPosts";
 import NotFound from "./pages/NotFound";
 import ThisPost from "./pages/ThisPost";
 import YourPosts from "./pages/YourPosts";
+
+
 
 
 const App = () => {
@@ -17,6 +20,7 @@ const App = () => {
                 {/* <Route path={"/post/:" + post._id} element={<ThisPost />} /> */}
                 <Route path={"/myposts"} element={<YourPosts />} />
                 {/* <Route path={"/myposts/" + userId} element={<YourPosts />} /> */}
+                <Route path={"/favorites"} element={<LikedPosts />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </BrowserRouter>

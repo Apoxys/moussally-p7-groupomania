@@ -1,0 +1,21 @@
+// ici les réglages généraux
+
+//font
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+
+* {
+    font-family: 'Lato', sans-serif;
+}
+
+//couleurs principales (cf specifications techniques)
+$primary_color : #FD2D01;
+$secondary_color : #FFD7D7;
+$tertiary_color : #4E5166;
+
+
+// mixin générales ("tout centré au centre") 
+// réglages appliqués sur toute la page  ( *{} )
+
+.main {
+    display: flex;
+}
