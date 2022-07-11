@@ -3,7 +3,7 @@ import Nav from '../components/Nav';
 
 const ThisPost = () => {
     return (
-        <div>
+        <div className='main'>
             <Nav />
             Ici vous pouvez voir une publication précise
         </div>

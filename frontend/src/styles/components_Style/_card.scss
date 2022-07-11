@@ -1,0 +1,10 @@
+.postcard {
+    width: 75%;
+    min-width: 400px;
+    max-width: 700px;
+    max-height: 75px;
+    text-overflow: ellipsis;
+    padding: 10px;
+    border: 2px dashed green;
+    border-radius: 20px;
+}

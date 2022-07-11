@@ -3,7 +3,7 @@ import Nav from '../components/Nav';
 
 const YourPosts = () => {
     return (
-        <div>
+        <div className='main'>
             <Nav />
             Ici les publications dont vous êtes à l'origine
         </div>

@@ -4,8 +4,19 @@
     margin-right: 10px;
     max-width: 300px;
     min-width: 210px;
+
+    ul {
+        list-style: none;
+
+        a {
+            outline: none;
+            text-decoration: none;
+            margin: 5px;
+        }
+
+    }
 }
 
 .icon {
-    background-image: url("../../assests/GroupoLogos/icon-left-font.svg");
+    background-image: url("../../assets/GroupoLogos/icon-left-font.png");
 }

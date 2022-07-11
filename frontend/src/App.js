@@ -3,7 +3,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Actu from "./pages/Actu";
 import CreatePost from "./pages/CreatePost";
 import LikedPosts from "./pages/LikedPosts";
+import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
+import Signup from "./pages/Signup";
 import ThisPost from "./pages/ThisPost";
 import YourPosts from "./pages/YourPosts";
 
@@ -11,9 +13,12 @@ import YourPosts from "./pages/YourPosts";
 
 
 const App = () => {
+    // declare if currentUser is connected
     return (
         <BrowserRouter>
             <Routes>
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
                 <Route path="/" element={<Actu />} />
                 <Route path="/publish" element={<CreatePost />} />
                 <Route path={"/post"} element={<ThisPost />} />
