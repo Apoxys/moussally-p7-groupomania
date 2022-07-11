@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { IsConnected } from './AppContext';
 
 const Nav = () => {
     return (
@@ -18,6 +19,11 @@ const Nav = () => {
                 <NavLink to="/favorites">
                     <li>Publications favorites</li>
                 </NavLink>
+                <li>
+                    <input type="submit" value="Disconnect"
+                    // onClick={IsConnected = false} 
+                    />
+                </li>
             </ul>
         </div>
     );

@@ -9,11 +9,11 @@ const CreatePost = () => {
             <form>
                 <label for='title'>
                     Titre de la publication :
-                    <input type="text" name="title" />
+                    <input type="text" name="title" placeholder='Le titre de votre publication' />
                 </label>
                 <label for='body'>
                     Dites nous tout :
-                    <input type="text" name="body" />
+                    <textarea name="body" placeholder='Votre publication'></textarea>
                 </label>
                 <label for='image'>
                     Une image vaut mille mots
