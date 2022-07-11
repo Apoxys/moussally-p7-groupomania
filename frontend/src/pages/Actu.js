@@ -20,13 +20,17 @@ const Actu = () => {
     }, []);
 
     return (
+
         <div className='main'>
             <Nav />
-            <h2>Retrouvez l'actualité des publications</h2>
-            <div className='postsection'>
-                <Card />
-            </div>
+            <main>
+                <h2>Retrouvez l'actualité des publications</h2>
+                <div className='postsection'>
+                    <Card />
+                </div>
+            </main>
         </div>
+
     );
 };
 

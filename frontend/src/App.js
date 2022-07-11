@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { IsConnected } from "./components/AppContext";
+
 import Actu from "./pages/Actu";
 import CreatePost from "./pages/CreatePost";
 import LikedPosts from "./pages/LikedPosts";
@@ -31,7 +32,9 @@ const App = () => {
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </BrowserRouter>
+
         </IsConnected.Provider>
+
     )
 };
 

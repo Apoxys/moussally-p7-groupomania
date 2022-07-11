@@ -18,8 +18,7 @@ const Login = () => {
             password: e.target.userPassword.value
         })
             .then(res => {
-                console.log(e.target.userMail.value,)
-
+                console.log(e.target.userMail.value, res)
             })
             .catch(error => {
                 console.log(error)
