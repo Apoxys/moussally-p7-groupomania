@@ -2,7 +2,8 @@
     width: 75%;
     min-width: 400px;
     max-width: 700px;
-    max-height: 75px;
+    max-height: 100px;
+    overflow: hidden;
     text-overflow: ellipsis;
     padding: 10px;
     border: 2px dashed green;
