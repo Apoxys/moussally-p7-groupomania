@@ -12,6 +12,7 @@ const Signup = () => {
             .then(res => {
                 console.log(e.target.userMail.value)
                 console.log(res)
+                // créer une alerte pour confirmer la création de compte, puis renvoyer vers la page Login pour farire la connection
             })
             .catch(error => {
                 console.log(error)

@@ -8,7 +8,7 @@ import Nav from '../components/Nav';
 const Actu = () => {
     // const [connected, setConnected] = useState(false);
 
-    // let navigate = useNavigate();
+    // const navigate = useNavigate();
 
     // useEffect(() => {
     //     if (connected === false) {
@@ -18,7 +18,8 @@ const Actu = () => {
     //         navigate("/") //go to app if connected
     //     }
 
-    // }, []);
+    // }, [connected]);
+
     const [data, setData] = useState([]);
 
     const getData = () => {
@@ -36,13 +37,15 @@ const Actu = () => {
     useEffect(() => {
         getData();
     }, []);
-
+    const userConnected = localStorage.getItem("userConnected")
+    console.log(localStorage)
 
     return (
 
         <div className='main'>
             <Nav />
             <main>
+                <h1>Bienvenue, {userConnected}</h1>
                 <h2>Retrouvez l'actualité des publications</h2>
                 <div className='postsection'>
                     {

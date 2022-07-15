@@ -12,31 +12,42 @@ import ThisPost from "./pages/ThisPost";
 import YourPosts from "./pages/YourPosts";
 
 
-
-
 const App = () => {
+    // localStorage INIT (asyncStorage version community)
+    const storageAccess = localStorage
+    // Retrieve data from storage logic
+    const getDataFromStorage = () => {
+        const dataInStorage = storageAccess.getItem
+        if (!dataInStorage) {
+            return {}
+        } else {
+            return JSON.parse(dataInStorage)
+        };
+    }
+
+
     // declare if currentUser is connected
     return (
-        <ConnectedUserId.Provider value="62cc13c2293dfdc05896dd7d">
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<Actu />} />
 
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/signup" element={<Signup />} />
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Actu />} />
 
-                    <Route path="/publish" element={<CreatePost />} />
-                    <Route path={"/post"} element={<ThisPost />} />
-                    {/* <Route path={"/post/:" + post._id} element={<ThisPost />} /> */}
-                    <Route path={"/myposts"} element={<YourPosts />} />
-                    {/* <Route path={"/myposts/" + userId} element={<YourPosts />} /> */}
-                    <Route path={"/favorites"} element={<LikedPosts />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
 
-                    <Route path="*" element={<NotFound />} />
-                </Routes>
-            </BrowserRouter>
+                <Route path="/publish" element={<CreatePost />} />
+                <Route path={"/post"} element={<ThisPost />} />
+                {/* <Route path={"/post/:" + post._id} element={<ThisPost />} /> */}
+                <Route path={"/myposts"} element={<YourPosts />} />
+                {/* <Route path={"/myposts/" + userId} element={<YourPosts />} /> */}
+                <Route path={"/favorites"} element={<LikedPosts />} />
 
-        </ConnectedUserId.Provider>
+                <Route path="*" element={<NotFound />} />
+            </Routes>
+        </BrowserRouter>
+
+
     )
 };
 

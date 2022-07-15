@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 
 
 const Login = () => {
-    // const [connected, setConnected] = useState(true);
 
-    let navigate = useNavigate();
-    // if (connected === true) {
-    //     navigate("/") //go to app if connected
-    // }
+    const navigate = useNavigate();
+    // useEffect(() => {
+    //     console.log('connected: ', connected);
+    //     if (connected === true) {
+    //         navigate("/") //go to app if connected
+    //     }
+    // }, [connected])
+    // 
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -19,14 +22,18 @@ const Login = () => {
             password: e.target.userPassword.value
         })
             .then(res => {
-                console.log(e.target.userMail.value, res.userId)
-                // setConnected = (true)
+                console.log('ICI', res.data.userId)
+                localStorage.setItem("userConnected", `${res.data.userId}`)
                 navigate("/")
             })
             .catch(error => {
-                console.log(error)
+                console.log('ET LA', error)
             })
     }
+
+    useEffect(() => {
+        console.log('Login localStorage: ', localStorage)
+    }, [])
     return (
         <div>
             This is a login page

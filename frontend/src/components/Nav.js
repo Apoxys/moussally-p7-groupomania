@@ -1,8 +1,16 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { IsConnected } from './AppContext';
 
 const Nav = () => {
+
+    const navigate = useNavigate()
+
+    const handleDisconnect = () => {
+        localStorage.clear("userConnected")
+        console.log('Nav localStorage: ', localStorage)
+        navigate("/login")
+    }
     return (
         <div className="navigation">
             <img className='icon' src='' alt='' />
@@ -21,7 +29,7 @@ const Nav = () => {
                 </NavLink>
                 <li>
                     <input type="submit" value="Disconnect"
-                    // onClick={IsConnected = false} 
+                        onClick={handleDisconnect}
                     />
                 </li>
             </ul>
