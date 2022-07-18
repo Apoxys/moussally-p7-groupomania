@@ -2,14 +2,18 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Nav from '../components/Nav';
-import userContext from '../context/UserContext';
+import { userContext, userTokenContext } from '../context/UserContext';
 
 const CreatePost = () => {
     const [authorId, setAuthorId] = useState()
     const [postImgInput, setPostImgInput] = useState()
     const [imgPostFile, setImgPostFile] = useState()
     const { currentUser, setCurrentUser } = useContext(userContext)
+    const { userToken, setUserToken } = useContext(userTokenContext)
+
     const navigate = useNavigate()
+
+    axios.defaults.headers.common['Authorization'] = userToken
 
     useEffect(() => {
         if (!localStorage.getItem("userConnected")) {
@@ -22,17 +26,13 @@ const CreatePost = () => {
 
     const handlePostImg = (e) => {
         e.preventDefault()
-        // console.log(e.target)
         setPostImgInput(e.target.value)
         setImgPostFile(e.target.files[0])
-        console.log(e.target)
-        console.log(e.target.value)
     };
 
     const handlePostSubmit = (e) => {
         e.preventDefault();
         const today = Date.now();
-        // console.log(imgPostFile)
         const formData = new FormData()
         formData.append("title", e.target.title.value)
         formData.append("body", e.target.body.value)
@@ -42,7 +42,6 @@ const CreatePost = () => {
 
         axios.post('http://localhost:3001/api/posts', formData)
             .then(res => {
-                // console.log("createpost log : ", body)
                 console.log(res)
             })
             .catch(error => {

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { DataProvider } from "./context/UserContext";
+import { DataProvider, TokenProvider } from "./context/UserContext";
 
 import Actu from "./pages/Actu";
 import CreatePost from "./pages/CreatePost";
@@ -16,6 +16,9 @@ import YourPosts from "./pages/YourPosts";
 const App = () => {
 
     const [currentUser, setCurrentUser] = useState("")
+    const [userToken, setUserToken] = useState("")
+
+
 
     // localStorage INIT (asyncStorage version community)
     const storageAccess = localStorage
@@ -33,23 +36,25 @@ const App = () => {
     // declare if currentUser is connected
     return (
         <DataProvider value={{ currentUser, setCurrentUser }}>
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<Actu />} />
+            <TokenProvider value={{ userToken, setUserToken }}>
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="/" element={<Actu />} />
 
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/signup" element={<Signup />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/signup" element={<Signup />} />
 
-                    <Route path="/publish" element={<CreatePost />} />
-                    <Route path={"/post/:id"} element={<ThisPost />} />
-                    <Route path="/post-modify/:id" element={<ModifyPost />} />
-                    <Route path={"/myposts"} element={<YourPosts />} />
-                    {/* <Route path={"/myposts/" + userId} element={<YourPosts />} /> */}
-                    <Route path={"/favorites"} element={<LikedPosts />} />
+                        <Route path="/publish" element={<CreatePost />} />
+                        <Route path={"/post/:id"} element={<ThisPost />} />
+                        <Route path="/post-modify/:id" element={<ModifyPost />} />
+                        <Route path={"/myposts"} element={<YourPosts />} />
+                        {/* <Route path={"/myposts/" + userId} element={<YourPosts />} /> */}
+                        <Route path={"/favorites"} element={<LikedPosts />} />
 
-                    <Route path="*" element={<NotFound />} />
-                </Routes>
-            </BrowserRouter>
+                        <Route path="*" element={<NotFound />} />
+                    </Routes>
+                </BrowserRouter>
+            </TokenProvider>
         </DataProvider >
 
     )

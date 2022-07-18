@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import userContext from '../context/UserContext';
+import { userContext, userTokenContext } from '../context/UserContext';
 
 
 
 const Login = () => {
 
     const { currentUser, setCurrentUser } = useContext(userContext)
+    const { userToken, setUserToken } = useContext(userTokenContext)
     let navigate = useNavigate();
 
     const handleSubmit = (e) => {
@@ -17,9 +18,14 @@ const Login = () => {
             password: e.target.userPassword.value
         })
             .then(res => {
-                console.log(res.data.userId)
+
                 setCurrentUser(`${res.data.userId}`)
-                localStorage.setItem("userConnected", `${res.data.userId}`)
+                // console.log(currentUser)
+                setUserToken(`${res.data.token}`)
+                // console.log(userToken)
+                localStorage.setItem("userConnected", `${res.data.userId}`,)
+                localStorage.setItem("userToken", `${res.data.token}`)
+                // console.log(localStorage)
                 navigate("/")
             })
             .catch(error => {
@@ -28,7 +34,7 @@ const Login = () => {
     }
 
     useEffect(() => {
-        console.log('Login localStorage: ', localStorage)
+        // console.log('Login localStorage: ', localStorage)
 
     }, [])
     return (

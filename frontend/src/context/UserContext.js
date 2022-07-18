@@ -1,8 +1,10 @@
 import { createContext, useState } from "react"
 
-const userContext = createContext({})
+export const userContext = createContext({})
+
 export const DataProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState("")
+
     return (
         <userContext.Provider value={{ currentUser, setCurrentUser }}>
             {children}
@@ -10,4 +12,13 @@ export const DataProvider = ({ children }) => {
     )
 }
 
-export default userContext
+export const userTokenContext = createContext({})
+
+export const TokenProvider = ({ children }) => {
+    const [userToken, setUserToken] = useState("")
+    return (
+        <userTokenContext.Provider value={{ userToken, setUserToken }} >
+            {children}
+        </userTokenContext.Provider>
+    )
+}

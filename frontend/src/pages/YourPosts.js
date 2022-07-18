@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Card from '../components/Card';
 import Nav from '../components/Nav';
-import userContext from '../context/UserContext';
+import { userContext, userTokenContext } from '../context/UserContext';
 
 const YourPosts = () => {
     const { currentUser, setCurrentUser } = useContext(userContext)
