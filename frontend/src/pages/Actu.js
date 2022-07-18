@@ -1,26 +1,17 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Card from '../components/Card';
 import Nav from '../components/Nav';
+import userContext from '../context/UserContext';
 
 
 const Actu = () => {
-    // const [connected, setConnected] = useState(false);
-
-    // const navigate = useNavigate();
-
-    // useEffect(() => {
-    //     if (connected === false) {
-    //         navigate("/login") // go to login/signup if not connected
-    //     }
-    //     if (connected === true) {
-    //         navigate("/") //go to app if connected
-    //     }
-
-    // }, [connected]);
-
     const [data, setData] = useState([]);
+    const { currentUser, setCurrentUser } = useContext(userContext)
+    const navigate = useNavigate();
+    const userConnected = localStorage.getItem("userConnected")
+    console.log(localStorage)
 
     const getData = () => {
         axios.get('http://localhost:3001/api/posts')
@@ -33,12 +24,13 @@ const Actu = () => {
             })
     };
 
-
     useEffect(() => {
+        if (!localStorage.userConnected) {
+            navigate("/login") // go to login/signup if not connected
+        }
+        console.log('user is :', currentUser)
         getData();
     }, []);
-    const userConnected = localStorage.getItem("userConnected")
-    console.log(localStorage)
 
     return (
 

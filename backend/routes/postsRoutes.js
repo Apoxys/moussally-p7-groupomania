@@ -12,7 +12,7 @@ router.get('/:id', auth, postsCtrl.getOnePost);
 router.post('/', /*auth,*/ multer, postsCtrl.createPost);
 router.post(':id', auth, postsCtrl.likes);
 
-router.put('/:id', auth, postsCtrl.modifyPost);
+router.put('/:id', auth, multer, postsCtrl.modifyPost);
 
 router.delete('/:id', auth, postsCtrl.deletePost);
 

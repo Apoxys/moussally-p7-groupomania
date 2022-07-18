@@ -6,7 +6,7 @@ const postSchema = mongoose.Schema({
   imageUrl: { type: String, required: false }, //users are not FORCED to upload an image
   likes: { type: Number, required: true },
   dislikes: { type: Number, required: true },
-  date: { type: String, required: true },
+  date: { type: Date, required: true },
   authorId: { type: String, required: true },
 });
 

@@ -1,19 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import userContext from '../context/UserContext';
 
 
 
 const Login = () => {
 
-    const navigate = useNavigate();
-    // useEffect(() => {
-    //     console.log('connected: ', connected);
-    //     if (connected === true) {
-    //         navigate("/") //go to app if connected
-    //     }
-    // }, [connected])
-    // 
+    const { currentUser, setCurrentUser } = useContext(userContext)
+    let navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -22,17 +17,19 @@ const Login = () => {
             password: e.target.userPassword.value
         })
             .then(res => {
-                console.log('ICI', res.data.userId)
+                console.log(res.data.userId)
+                setCurrentUser(`${res.data.userId}`)
                 localStorage.setItem("userConnected", `${res.data.userId}`)
                 navigate("/")
             })
             .catch(error => {
-                console.log('ET LA', error)
+                console.log(error)
             })
     }
 
     useEffect(() => {
         console.log('Login localStorage: ', localStorage)
+
     }, [])
     return (
         <div>
@@ -44,7 +41,7 @@ const Login = () => {
                 </label>
                 <label htmlFor="userPassword">
                     Password
-                    <input type='text' name="userPassword" required />
+                    <input type='password' name="userPassword" required />
                 </label>
                 <input type='submit' value="Log in!" />
             </form>
