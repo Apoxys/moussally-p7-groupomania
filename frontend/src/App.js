@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { DataProvider, TokenProvider } from "./context/UserContext";
+import { DataProvider, TokenProvider, userContext } from "./context/UserContext";
+import { PostDataProvider } from "./context/PostContext";
 
 import Actu from "./pages/Actu";
 import CreatePost from "./pages/CreatePost";
@@ -17,7 +18,7 @@ const App = () => {
 
     const [currentUser, setCurrentUser] = useState("")
     const [userToken, setUserToken] = useState("")
-
+    const [currentPost, setCurrentPost] = useState("")
 
 
     // localStorage INIT (asyncStorage version community)
@@ -37,23 +38,24 @@ const App = () => {
     return (
         <DataProvider value={{ currentUser, setCurrentUser }}>
             <TokenProvider value={{ userToken, setUserToken }}>
-                <BrowserRouter>
-                    <Routes>
-                        <Route path="/" element={<Actu />} />
+                <PostDataProvider value={{ currentPost, setCurrentPost }}>
+                    <BrowserRouter>
+                        <Routes>
+                            <Route path="/" element={<Actu />} />
 
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/signup" element={<Signup />} />
+                            <Route path="/login" element={<Login />} />
+                            <Route path="/signup" element={<Signup />} />
 
-                        <Route path="/publish" element={<CreatePost />} />
-                        <Route path={"/post/:id"} element={<ThisPost />} />
-                        <Route path="/post-modify/:id" element={<ModifyPost />} />
-                        <Route path={"/myposts"} element={<YourPosts />} />
-                        {/* <Route path={"/myposts/" + userId} element={<YourPosts />} /> */}
-                        <Route path={"/favorites"} element={<LikedPosts />} />
+                            <Route path="/publish" element={<CreatePost />} />
+                            <Route path={"/post/id:" + "*"} element={<ThisPost />} />
+                            <Route path={"/post_modify/id:"/*+post._id*/} element={<ModifyPost />} />
+                            <Route path={"/myposts/id:" + currentUser} element={<YourPosts />} />
+                            <Route path={"/favorites/id:" + currentUser} element={<LikedPosts />} />
 
-                        <Route path="*" element={<NotFound />} />
-                    </Routes>
-                </BrowserRouter>
+                            <Route path="*" element={<NotFound />} />
+                        </Routes>
+                    </BrowserRouter>
+                </PostDataProvider>
             </TokenProvider>
         </DataProvider >
 
