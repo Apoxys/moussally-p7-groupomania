@@ -18,14 +18,10 @@ const Login = () => {
             password: e.target.userPassword.value
         })
             .then(res => {
-
                 setCurrentUser(`${res.data.userId}`)
-                // console.log(currentUser)
                 setUserToken(`${res.data.token}`)
-                // console.log(userToken)
                 localStorage.setItem("userConnected", `${res.data.userId}`,)
                 localStorage.setItem("userToken", `${res.data.token}`)
-                // console.log(localStorage)
                 navigate("/")
             })
             .catch(error => {
@@ -34,7 +30,6 @@ const Login = () => {
     }
 
     useEffect(() => {
-        // console.log('Login localStorage: ', localStorage)
 
     }, [])
     return (

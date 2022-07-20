@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 
 module.exports = (req, res, next) => {
   try {
-    const token = req.headers.Authorization.split(" ")[1];
+    const token = req.headers.Authorization;
     const decodedToken = jwt.verify(token, `${process.env.WEB_AUTH_TOKEN}`);
     const userId = decodedToken.userId;
     req.auth = { userId };
@@ -12,6 +12,6 @@ module.exports = (req, res, next) => {
       next();
     }
   } catch {
-    res.status(401).json({ error: error | "Unidentified request!" });
+    res.status(401).json({ error: new Error + "Unidentified request!" });
   }
 };
