@@ -19,10 +19,8 @@ const ThisPost = () => {
     //fetch and set data to be used in component
     const getThisData = () => {
         axios.get(`http://localhost:3001/api/posts/${URLparams.id}`)
-
             .then(res => {
                 setPostData(res.data)
-                console.log("bop", postData)
             })
             .catch(error => {
                 console.log(error, "dw, you'll get there")

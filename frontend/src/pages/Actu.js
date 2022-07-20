@@ -21,7 +21,7 @@ const Actu = () => {
         axios.get('http://localhost:3001/api/posts')
             .then(res => {
                 setData(res.data)
-                // console.log("data is : ", data, "and user token is : ", userToken)
+
             })
             .catch(error => {
                 console.log(error)
@@ -33,6 +33,7 @@ const Actu = () => {
             navigate("/login") // go to login/signup if not connected
         }
         getData();
+        console.log("data is : ", data)
     }, []);
 
     return (
