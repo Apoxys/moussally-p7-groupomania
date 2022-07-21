@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { userContext, userTokenContext } from '../context/UserContext';
+import { userAdminContext, userContext, userTokenContext } from '../context/UserContext';
 
 
 
@@ -9,6 +9,7 @@ const Login = () => {
 
     const { currentUser, setCurrentUser } = useContext(userContext)
     const { userToken, setUserToken } = useContext(userTokenContext)
+    const { isAdmin, setIsAdmin } = useContext(userAdminContext)
     let navigate = useNavigate();
 
     const handleSubmit = (e) => {
@@ -20,8 +21,11 @@ const Login = () => {
             .then(res => {
                 setCurrentUser(`${res.data.userId}`)
                 setUserToken(`${res.data.token}`)
-                localStorage.setItem("userConnected", `${res.data.userId}`,)
+                setIsAdmin(`${res.data.isAdmin}`)
+                console.log(res.data.isAdmin)
+                localStorage.setItem("userConnected", `${res.data.userId}`)
                 localStorage.setItem("userToken", `${res.data.token}`)
+                localStorage.setItem("isAdmin", `${res.data.isAdmin}`)
                 navigate("/")
             })
             .catch(error => {

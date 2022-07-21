@@ -29,7 +29,7 @@ const ThisPost = () => {
 
     useEffect(() => {
         getThisData();
-    }, [])
+    }, [postData])
 
     return (
         <div className='main'>

@@ -8,14 +8,15 @@ import { userContext, userTokenContext } from '../context/UserContext';
 
 const Actu = () => {
 
-    const [data, setData] = useState([]);
+    //context and headers
     const { currentUser, setCurrentUser } = useContext(userContext)
     const { userToken, setUserToken } = useContext(userTokenContext)
-
-    const navigate = useNavigate();
-    const userConnected = localStorage.getItem("userConnected")
-
+    // setCurrentUser(localStorage.getItem("userConnected"))
+    // setUserToken(localStorage.getItem("userToken"))
     axios.defaults.headers.common['Authorization'] = userToken
+
+    const [data, setData] = useState([]);
+    const navigate = useNavigate();
 
     const getData = () => {
         axios.get('http://localhost:3001/api/posts')

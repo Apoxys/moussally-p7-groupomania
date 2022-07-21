@@ -1,8 +1,11 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Navigate, NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Signup = () => {
+
+    const navigate = useNavigate();
+
     const handleSubmit = (e) => {
         e.preventDefault();
         axios.post('http://localhost:3001/api/auth/signup', {
@@ -13,6 +16,8 @@ const Signup = () => {
                 console.log(e.target.userMail.value)
                 console.log(res)
                 // créer une alerte pour confirmer la création de compte, puis renvoyer vers la page Login pour farire la connection
+                window.alert("Votre compte a été créé ! Rendez vous sur la page Login pour vous connecter !")
+                navigate("/Login")
             })
             .catch(error => {
                 console.log(error)
