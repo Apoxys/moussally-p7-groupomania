@@ -21,6 +21,7 @@ const ThisPost = () => {
         axios.get(`http://localhost:3001/api/posts/${URLparams.id}`)
             .then(res => {
                 setPostData(res.data)
+                // console.log(res.data)
             })
             .catch(error => {
                 console.log(error, "dw, you'll get there")
@@ -29,13 +30,15 @@ const ThisPost = () => {
 
     useEffect(() => {
         getThisData();
-    }, [postData])
+    }, [])
 
     return (
         <div className='main'>
             <Nav />
             Ici vous pouvez voir une publication précise
-            <SpecificCard post={postData} />
+            {
+                postData ? <SpecificCard post={postData} /> : <p>Loading ...</p>
+            }
         </div>
     );
 };

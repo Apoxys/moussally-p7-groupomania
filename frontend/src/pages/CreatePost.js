@@ -22,7 +22,7 @@ const CreatePost = () => {
         if (currentUser) {
             setAuthorId(localStorage.getItem("userConnected"))
         }
-    }, [])
+    }, [currentUser, navigate])
 
     const handlePostImg = (e) => {
         e.preventDefault()

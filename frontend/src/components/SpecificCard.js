@@ -1,40 +1,48 @@
 import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import { userContext, userTokenContext, userAdminContext } from '../context/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 
 const SpecificCard = ({ post }) => {
+
+    const navigate = useNavigate();
 
     //contextimport
     const { currentUser, setCurrentUser } = useContext(userContext)
     const { userToken, setUserToken } = useContext(userTokenContext)
     const { isAdmin, setIsAdmin } = useContext(userAdminContext)
-    // setCurrentUser(localStorage.getItem("userConnected"))
-    // setUserToken(localStorage.getItem("userToken"))
-    // setIsAdmin(localStorage.getItem("isAdmin")) impossible de changer un contexte quand un autre composant se monte ? => localStorage a t il une utilité ? 
-    axios.defaults.headers.common['Authorization'] = userToken
 
-    //import from createpost page
-    const [title, setTitle] = useState("")
-    const [body, setBody] = useState("")
-    const [postImgInput, setPostImgInput] = useState()
-    const [imgPostFile, setImgPostFile] = useState()
-    //endofimport
+    axios.defaults.headers.common['Authorization'] = userToken
 
     const [isEditing, setIsEditing] = useState(false)
     const [canModify, setCanModify] = useState(false)
 
     //Check if users have rights to modify current post
     const checkUserRights = () => {
-        if (isAdmin == true || currentUser == post.authorId) {
+        console.log(isAdmin, currentUser, post.authorId)
+        if (isAdmin || currentUser === post.authorId) {
             setCanModify(true)
         } else {
             setCanModify(false)
         }
-        // console.log(canModify)
+        console.log('check: ', canModify, isAdmin)
     }
+    //import from createpost page / used to update
+    const [title, setTitle] = useState("")
+    const [body, setBody] = useState("")
+    const [postImgInput, setPostImgInput] = useState()
+    const [imgPostFile, setImgPostFile] = useState()
+    //endofimport
 
-    // import from Card component
+    //imported and modified from create post /used to update
+    const handlePostImg = (e) => {
+        e.preventDefault()
+        setPostImgInput(e.target.value) //permet de récupérer postImgInput et la mettre en defaultValue de <img/>
+        setImgPostFile(e.target.files[0])
+    };
+
+    // import from Card component / used to update
     const dateFormater = (date) => {
         let newDate = new Date(date).toLocaleDateString("fr-FR", {
             year: "numeric",
@@ -47,18 +55,8 @@ const SpecificCard = ({ post }) => {
     }
     //endofimport
 
-    const deletePostHandler = (e) => {
-        window.alert("vous êtes sur de vouloir supprimer ce post ?")
-
-    };
-
-    //imported and modified from create post
-    const handlePostImg = (e) => {
-        e.preventDefault()
-        setPostImgInput(e.target.value) //permet de récupérer postImgInput et la mettre en defaultValue de <img/>
-        setImgPostFile(e.target.files[0])
-    };
-
+    //update logic
+    //create new date
     const handleUpdateSubmit = (e) => {
         e.preventDefault();
         const today = Date.now();
@@ -67,7 +65,7 @@ const SpecificCard = ({ post }) => {
         formData.append("body", body)
         formData.append("imagePost", imgPostFile)
         formData.append("date", today)
-
+        //post update to server
         axios.put("http://localhost:3001/api/posts/" + post._id, formData)
             .then(res => {
                 console.log("updated : ", res.data)
@@ -77,11 +75,39 @@ const SpecificCard = ({ post }) => {
                 console.log(error, "not yet but soon")
             })
     };
-    //endofimport
+
+    //delete logic
+    const deletePostHandler = (e) => {
+        window.alert("vous êtes sur de vouloir supprimer ce post ?")
+        axios.delete("http://localhost:3001/api/posts/" + post._id)
+            .then(res => {
+                console.log(res)
+                navigate("/")
+            })
+            .catch(error => {
+                console.log("delete error : ", error)
+            })
+    };
+
+
+    //likes logic
+    const handleLike = (e) => {
+        axios.post("http://localhost:3001/api/posts/" + post._id, { "like": 1 })
+            .then(res => {
+                console.log(res)
+            })
+            .catch(error => {
+                console.log("likes error", error)
+            })
+
+    }
 
     useEffect(() => {
+        //     if (canModify == false) {
         checkUserRights();
-    }, [])
+        //     }
+        //     console.log('useEffect rights: ', canModify);
+    }, [canModify, checkUserRights])
 
     return (
         <main className='specific-card'>
@@ -120,32 +146,26 @@ const SpecificCard = ({ post }) => {
 
 
             <aside className='specific-card-aside'>
-                <span>number of likes : {" " + post.likes}</span>
+                <span onClick={(e) => handleLike(e)}>number of likes : {" " + post.likes}</span>
+                <br />
                 <span>number of dislikes : {" " + post.dislikes}</span>
                 <br />
                 Posté le {dateFormater(post.date)}
             </aside>
             {
                 canModify ?
-                    <div>
-                        <button onClick={() => setIsEditing(true)}>Modify post</button>
-                        <button onClick={(e) => deletePostHandler(e)}>Delete post</button>
-                    </div>
+                    isEditing ?
+                        <p>You are editing</p>
+                        :
+                        < div >
+                            <button onClick={() => setIsEditing(true)}>Modify post</button>
+                            <button onClick={(e) => deletePostHandler(e)}>Delete post</button>
+                        </div >
                     :
                     ""
             }
-            {
-                isEditing ?
-                    <p>You are editing</p>
-                    :
-                    // <div>
-                    //     <button onClick={() => setIsEditing(true)}>Modify post</button>
-                    //     <button onClick={(e) => deletePostHandler(e)}>Delete post</button>
-                    // </div>
-                    // :
-                    ""
-            }
-        </main>
+
+        </main >
     );
 };
 

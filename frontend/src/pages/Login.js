@@ -22,7 +22,6 @@ const Login = () => {
                 setCurrentUser(`${res.data.userId}`)
                 setUserToken(`${res.data.token}`)
                 setIsAdmin(`${res.data.isAdmin}`)
-                console.log(res.data.isAdmin)
                 localStorage.setItem("userConnected", `${res.data.userId}`)
                 localStorage.setItem("userToken", `${res.data.token}`)
                 localStorage.setItem("isAdmin", `${res.data.isAdmin}`)

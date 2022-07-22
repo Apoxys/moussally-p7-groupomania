@@ -22,7 +22,7 @@ const Actu = () => {
         axios.get('http://localhost:3001/api/posts')
             .then(res => {
                 setData(res.data)
-
+                console.log("data is : ", res.data)
             })
             .catch(error => {
                 console.log(error)
@@ -32,10 +32,11 @@ const Actu = () => {
     useEffect(() => {
         if (!localStorage.userConnected) {
             navigate("/login") // go to login/signup if not connected
+        } else {
+            getData();
         }
-        getData();
-        console.log("data is : ", data)
-    }, []);
+
+    }, [localStorage]);
 
     return (
 
