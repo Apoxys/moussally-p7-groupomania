@@ -5,6 +5,7 @@ import { AdminProvider, DataProvider, TokenProvider, userContext } from "./conte
 
 import Actu from "./pages/Actu";
 import CreatePost from "./pages/CreatePost";
+import EditPost from "./pages/EditPost";
 import LikedPosts from "./pages/LikedPosts";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
@@ -48,6 +49,7 @@ const App = () => {
 
                             <Route path="/publish" element={<CreatePost />} />
                             <Route path={"/post/:id"} element={<ThisPost />} />
+                            <Route path={"/edit-post/:id"} element={<EditPost post />} />
                             <Route path={"/myposts/:id" + currentUser} element={<YourPosts />} />
                             <Route path={"/favorites/:id" + currentUser} element={<LikedPosts />} />
 

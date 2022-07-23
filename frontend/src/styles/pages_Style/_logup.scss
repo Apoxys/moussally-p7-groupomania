@@ -1,0 +1,23 @@
+//styling sheet for Login and Signup
+
+.logup {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    &-form {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        &-email {
+            margin-top: 10px;
+            margin: 10px;
+        }
+
+        &-pwd {
+            margin-bottom: 10px;
+        }
+    }
+}

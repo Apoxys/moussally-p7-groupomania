@@ -15,16 +15,20 @@ const Nav = () => {
         <div className="navigation">
             <img className='icon' src='' alt='' />
             <ul>
-                <NavLink to="/">
+                <NavLink to="/"
+                    className={(nav) => (nav.isActive ? "nav-active" : "")}>
                     <li>Actualité</li>
                 </NavLink>
-                <NavLink to="/publish">
+                <NavLink to="/publish"
+                    className={(nav) => (nav.isActive ? "nav-active" : "")}>
                     <li>Publier un nouveau post</li>
                 </NavLink>
-                <NavLink to="/myposts">
+                <NavLink to="/myposts"
+                    className={(nav) => (nav.isActive ? "nav-active" : "")}>
                     <li>Vos publications</li>
                 </NavLink>
-                <NavLink to="/favorites">
+                <NavLink to="/favorites"
+                    className={(nav) => (nav.isActive ? "nav-active" : "")}>
                     <li>Publications favorites</li>
                 </NavLink>
                 <li>

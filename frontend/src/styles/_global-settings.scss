@@ -13,9 +13,9 @@ $secondary_color : #FFD7D7;
 $tertiary_color : #4E5166;
 
 
-// mixin générales ("tout centré au centre") 
+// mixins générales ("tout centré au centre") 
 // réglages appliqués sur toute la page  ( *{} )
 
-.main {
+.global {
     display: flex;
 }

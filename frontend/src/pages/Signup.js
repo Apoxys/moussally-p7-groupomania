@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navigate, NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Signup = () => {
@@ -24,21 +24,22 @@ const Signup = () => {
             })
     }
     return (
-        <div>
-            This is a Signup page
-            <form onSubmit={(e) => handleSubmit(e)}>
-                <label htmlFor='userMail'>
+        <div className='logup'>
+            <img src="../src/assets/GroupoLogos/icon-left-font.png" alt='logo groupomania' />
+            <h1>This is a Signup page</h1>
+            <form className='logup-form' onSubmit={(e) => handleSubmit(e)}>
+                <label className='logup-form-email' htmlFor='userMail'>
                     E-mail
                     <input type="text" name="userMail" required />
                 </label>
-                <label htmlFor="userPassword">
+                <label className='logup-form-pwd' htmlFor="userPassword">
                     Password
                     <input type='text' name="userPassword" required />
                 </label>
                 <input type="submit" value="Sign up!" />
             </form>
             <br />
-            Already an account ?
+            <p>Already an account ?</p>
             <NavLink to="/login">
                 Log in !
             </NavLink>

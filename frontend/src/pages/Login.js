@@ -36,24 +36,26 @@ const Login = () => {
 
     }, [])
     return (
-        <div>
-            This is a login page
-            <form onSubmit={(e) => handleSubmit(e)}>
-                <label htmlFor='userMail'>
+        <div className='logup'>
+            <img src="../src/assets/GroupoLogos/icon-left-font.png" alt='logo groupomania' />
+            <h1>This is a login page</h1>
+            <form className='logup-form' onSubmit={(e) => handleSubmit(e)}>
+                <label className='logup-form-email' htmlFor='userMail'>
                     E-mail
                     <input type="text" name="userMail" required />
                 </label>
-                <label htmlFor="userPassword">
+                <label className='logup-form-pwd' htmlFor="userPassword">
                     Password
                     <input type='password' name="userPassword" required />
                 </label>
                 <input type='submit' value="Log in!" />
             </form>
             <br />
-            No account yet ? Create one !
+            <p>No account yet ? Create one !</p>
             <NavLink to="/signup">
                 Sign up !
             </NavLink>
+
         </div>
     );
 };

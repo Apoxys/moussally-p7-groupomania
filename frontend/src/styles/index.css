@@ -3,7 +3,7 @@
   font-family: "Lato", sans-serif;
 }
 
-.main {
+.global {
   display: flex;
 }
 
@@ -18,9 +18,13 @@
   list-style: none;
 }
 .navigation ul a {
-  outline: none;
   text-decoration: none;
   margin: 5px;
+}
+.navigation ul .nav-active li {
+  width: fit-content;
+  background-color: #FD2D01;
+  color: white;
 }
 
 .icon {
@@ -38,6 +42,31 @@
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 10px;
-  border: 2px dashed green;
+  border: 2px dashed #FD2D01;
   border-radius: 20px;
+}
+
+.logup {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.logup-form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.logup-form-email {
+  margin-top: 10px;
+  margin: 10px;
+}
+.logup-form-pwd {
+  margin-bottom: 10px;
+}
+
+.form-create-post {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }/*# sourceMappingURL=index.css.map */

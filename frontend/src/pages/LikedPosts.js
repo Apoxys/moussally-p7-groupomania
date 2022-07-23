@@ -25,7 +25,7 @@ const LikedPosts = () => {
     }, []);
 
     return (
-        <div className='main'>
+        <div className='global'>
             <Nav />
             <main>
                 <h2>Ici vous retrouverez les posts que vous avez aimés</h2>

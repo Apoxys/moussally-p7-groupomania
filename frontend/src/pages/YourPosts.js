@@ -19,7 +19,7 @@ const YourPosts = () => {
     }, [])
 
     return (
-        <div className='main'>
+        <div className='global'>
             <Nav />
             <main>
                 <h2>Ici les publications dont vous êtes à l'origine</h2>

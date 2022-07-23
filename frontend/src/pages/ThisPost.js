@@ -33,12 +33,14 @@ const ThisPost = () => {
     }, [])
 
     return (
-        <div className='main'>
+        <div className='global'>
             <Nav />
-            Ici vous pouvez voir une publication précise
-            {
-                postData ? <SpecificCard post={postData} /> : <p>Loading ...</p>
-            }
+            <div className='maincontent'>
+                <p>Ici vous pouvez voir une publication précise</p>
+                {
+                    postData ? <SpecificCard post={postData} /> : <p>Loading ...</p>
+                }
+            </div>
         </div>
     );
 };

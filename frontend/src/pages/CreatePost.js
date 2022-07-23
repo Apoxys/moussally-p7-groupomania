@@ -50,25 +50,27 @@ const CreatePost = () => {
     };
 
     return (
-        <div className='main'>
-            <Nav />
-            Publiez ici
-            <form className='form-create-post' onSubmit={(e) => handlePostSubmit(e)} encType="multipart/form-data">
-                <label htmlFor='title'>
-                    Titre de la publication :
-                    <input type="text" name="title" placeholder='Le titre de votre publication' required />
-                </label>
-                <label htmlFor='body'>
-                    Dites nous tout :
-                    <textarea name="body" placeholder='Votre publication' required></textarea>
-                </label>
-                <label htmlFor='image'>
-                    Une image vaut mille mots
-                    <input type="file" name="imagePost" id="imagePost" accept='image/png, image/jpeg, image/jpg, image/gif' value={postImgInput} onChange={handlePostImg} />
-                </label>
-                <input type="submit" value="Envoyer" />
-            </form>
-        </div>
+        <div className='global'>
+            < Nav />
+            <div className='maincontent'>
+                <p>Publiez ici</p>
+                < form className='form-create-post' onSubmit={(e) => handlePostSubmit(e)} encType="multipart/form-data" >
+                    <label htmlFor='title'>
+                        Titre de la publication :
+                        <input type="text" name="title" placeholder='Le titre de votre publication' required />
+                    </label>
+                    <label htmlFor='body'>
+                        Dites nous tout :
+                        <textarea name="body" placeholder='Votre publication' required></textarea>
+                    </label>
+                    <label htmlFor='image'>
+                        Une image vaut mille mots
+                        <input type="file" name="imagePost" id="imagePost" accept='image/png, image/jpeg, image/jpg, image/gif' value={postImgInput} onChange={handlePostImg} />
+                    </label>
+                    <input type="submit" value="Envoyer" />
+                </form >
+            </div>
+        </div >
     );
 };
 

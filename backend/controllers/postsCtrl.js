@@ -70,7 +70,6 @@ exports.modifyPost = (req, res, next) => {
 
 //Delete
 exports.deletePost = (req, res, next) => {
-    console.log(post._id, req.params)
     post.findOne({ _id: req.params.id })
         .then((post) => {
             if (!post) {
@@ -86,7 +85,7 @@ exports.deletePost = (req, res, next) => {
                     .catch(error => res.status(400).json({ error }));
             })
         })
-        .catch(error => res.status(400).json({ message: error }));
+        .catch(error => res.status(400).json({ message: error.Error }));
 };
 
 

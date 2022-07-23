@@ -40,8 +40,8 @@ const Actu = () => {
 
     return (
 
-        <div className='main'>
-            <Nav />
+        <div className='global'>
+            < Nav />
             <main>
                 <h1>Bienvenue, {currentUser}</h1>
                 <h2>Retrouvez l'actualité des publications</h2>
@@ -61,7 +61,7 @@ const Actu = () => {
                     }
                 </div>
             </main>
-        </div>
+        </div >
 
     );
 };

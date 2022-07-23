@@ -9,13 +9,23 @@
         list-style: none;
 
         a {
-            outline: none;
             text-decoration: none;
             margin: 5px;
         }
 
+        .nav-active {
+            li {
+                width: fit-content;
+                background-color: $primary_color;
+                color: white;
+            }
+
+        }
+
     }
 }
+
+
 
 .icon {
     background-image: url("../../assets/GroupoLogos/icon-left-font.png");
