@@ -22,7 +22,7 @@ const YourPosts = () => {
         <div className='global'>
             <Nav />
             <main>
-                <h2>Ici les publications dont vous êtes à l'origine</h2>
+                <h1>Ici les publications dont vous êtes à l'origine</h1>
 
             </main>
         </div>

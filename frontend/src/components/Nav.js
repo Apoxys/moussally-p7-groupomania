@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { userContext } from '../context/UserContext';
 
 
 const Nav = () => {
+
+    const { currentUser, setCurrentUser } = useContext(userContext)
 
     const navigate = useNavigate()
 
@@ -23,11 +26,11 @@ const Nav = () => {
                     className={(nav) => (nav.isActive ? "nav-active" : "")}>
                     <li>Publier un nouveau post</li>
                 </NavLink>
-                <NavLink to="/myposts"
+                <NavLink to={"/myposts/" + currentUser}
                     className={(nav) => (nav.isActive ? "nav-active" : "")}>
                     <li>Vos publications</li>
                 </NavLink>
-                <NavLink to="/favorites"
+                <NavLink to={"/favorites/" + currentUser}
                     className={(nav) => (nav.isActive ? "nav-active" : "")}>
                     <li>Publications favorites</li>
                 </NavLink>

@@ -1,4 +1,5 @@
 const post = require('../models/postsModel');
+const user = require('../models/usersModel');
 const fs = require('fs');
 
 //Read All and Read One 
@@ -27,8 +28,8 @@ exports.getOnePost = (req, res, next) => {
 //Create
 exports.createPost = (req, res, next) => {
     const postObject = req.body
-    console.log('postCtrl Log : ', req.body)
-    // delete postObject._id;
+    // console.log('postCtrl Log : ', req.body)
+    delete postObject._id;
     const newPost = new post({
         ...postObject,
         imageUrl: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : "",
@@ -91,8 +92,11 @@ exports.deletePost = (req, res, next) => {
 
 //likes and dislikes
 exports.likes = (req, res, next) => {
+    console.log(req.auth)
     user.findOne({ _id: req.auth.userId })
         .then((currentUser) => {
+            console.log("userfound", current._id, 'now need the post', req.params.id)
+
             post.findOne({ _id: req.params.id })
                 .then((currentPost) => {
                     //check user like status => if user already likes this do nothing more, else increment likes.
@@ -133,10 +137,12 @@ exports.likes = (req, res, next) => {
                     // currentPost.dislikes = post.dislikes.length
                     post.save()
                         .then((post) => res.status(200).json({ message: 'likes et dislikes mis à jour' }))
-                        .catch(() => res.status(400).json({ error: new Error }));
+                        .catch(() => res.status(400).json({ "error in save ": new Error }));
                 })
-                .catch(error => res.status(400).json({ error }));
+                .catch(error => res.status(400).json({ "error in post findOne ": error }));
+
         })
+        .catch(error => res.status(400).json({ "error in userfindOne ": error }));
 
 
 };

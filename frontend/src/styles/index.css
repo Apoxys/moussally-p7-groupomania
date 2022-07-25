@@ -19,6 +19,12 @@
 }
 .navigation ul a {
   text-decoration: none;
+  color: inherit;
+}
+.navigation ul a:visited {
+  color: inherit;
+}
+.navigation ul a {
   margin: 5px;
 }
 .navigation ul .nav-active li {
@@ -28,7 +34,7 @@
 }
 
 .icon {
-  background-image: url("../../assets/GroupoLogos/icon-left-font.png");
+  background-image: url("../../assets/GroupoLogos/logo-left-font.png");
 }
 
 .card {
@@ -63,6 +69,19 @@
 }
 .logup-form-pwd {
   margin-bottom: 10px;
+}
+
+.logo {
+  max-width: 350px;
+  object-fit: cover;
+}
+
+.postsection a {
+  text-decoration: none;
+  color: inherit;
+}
+.postsection a:visited {
+  color: inherit;
 }
 
 .form-create-post {

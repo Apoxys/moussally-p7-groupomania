@@ -1,6 +1,8 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import logo from '../assets/GroupoLogos/logo-left-font.png'
+
 
 const Signup = () => {
 
@@ -25,7 +27,7 @@ const Signup = () => {
     }
     return (
         <div className='logup'>
-            <img src="../src/assets/GroupoLogos/icon-left-font.png" alt='logo groupomania' />
+            <img className='logo' src={logo} alt='logo groupomania' />
             <h1>This is a Signup page</h1>
             <form className='logup-form' onSubmit={(e) => handleSubmit(e)}>
                 <label className='logup-form-email' htmlFor='userMail'>

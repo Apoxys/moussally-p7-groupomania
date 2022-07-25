@@ -13,8 +13,19 @@ $secondary_color : #FFD7D7;
 $tertiary_color : #4E5166;
 
 
-// mixins générales ("tout centré au centre") 
-// réglages appliqués sur toute la page  ( *{} )
+// mixins générales
+@mixin noStyleLinks {
+    a {
+        text-decoration: none;
+        color: inherit;
+
+        &:visited {
+            color: inherit
+        }
+    }
+}
+
+// réglages appliqués sur toute la page
 
 .global {
     display: flex;

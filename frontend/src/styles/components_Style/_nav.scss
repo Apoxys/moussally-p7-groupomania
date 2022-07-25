@@ -6,10 +6,11 @@
     min-width: 210px;
 
     ul {
+        @include noStyleLinks;
         list-style: none;
 
         a {
-            text-decoration: none;
+
             margin: 5px;
         }
 
@@ -28,5 +29,5 @@
 
 
 .icon {
-    background-image: url("../../assets/GroupoLogos/icon-left-font.png");
+    background-image: url("../../assets/GroupoLogos/logo-left-font.png");
 }

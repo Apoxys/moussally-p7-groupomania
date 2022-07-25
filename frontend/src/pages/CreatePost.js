@@ -53,7 +53,7 @@ const CreatePost = () => {
         <div className='global'>
             < Nav />
             <div className='maincontent'>
-                <p>Publiez ici</p>
+                <h1>Publiez ici</h1>
                 < form className='form-create-post' onSubmit={(e) => handlePostSubmit(e)} encType="multipart/form-data" >
                     <label htmlFor='title'>
                         Titre de la publication :

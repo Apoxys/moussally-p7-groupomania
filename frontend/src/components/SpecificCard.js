@@ -45,7 +45,7 @@ const SpecificCard = ({ post }) => {
     const deletePostHandler = () => {
         window.alert("vous êtes sur de vouloir supprimer ce post ?")
         console.log(post._id)
-        axios.delete("http://localhost:3001/api/posts/" + post._id)
+        axios.delete("http://localhost:3001/api/posts/delete/" + post._id)
             .then(res => {
                 console.log(res)
                 navigate("/")
@@ -58,7 +58,11 @@ const SpecificCard = ({ post }) => {
 
     //likes logic
     const handleLike = (e) => {
-        axios.post("http://localhost:3001/api/posts/" + post._id, { "like": 1 })
+        axios.post("http://localhost:3001/api/posts/" + post._id,
+            {
+                "userId": currentUser,
+                "like": 1
+            })
             .then(res => {
                 console.log(res)
             })
