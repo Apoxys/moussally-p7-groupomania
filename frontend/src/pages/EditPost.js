@@ -20,7 +20,6 @@ const EditPost = () => {
             })
     };
 
-
     let navigate = useNavigate();
 
     const { userToken, setUserToken } = useContext(userTokenContext)

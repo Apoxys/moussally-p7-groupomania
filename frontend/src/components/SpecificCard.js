@@ -2,9 +2,14 @@ import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import { userContext, userTokenContext, userAdminContext } from '../context/UserContext';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 
 const SpecificCard = ({ post }) => {
+
+    //popup alert MySweetAlert with react
+    const mySwal = withReactContent(Swal)
 
     const navigate = useNavigate();
 
@@ -19,13 +24,12 @@ const SpecificCard = ({ post }) => {
 
     //Check if users have rights to modify current post
     const checkUserRights = () => {
-        console.log(isAdmin, currentUser, post.authorId)
-        if (isAdmin || currentUser === post.authorId) {
+
+        if (isAdmin === 'true' || currentUser == post.authorId) {
             setCanModify(true)
-        } else {
-            setCanModify(false)
         }
-        console.log('check: ', canModify, isAdmin)
+
+        console.log('check: ', canModify)
     }
 
     // import from Card component / used to update
@@ -43,24 +47,38 @@ const SpecificCard = ({ post }) => {
 
     //delete logic
     const deletePostHandler = () => {
-        window.alert("vous êtes sur de vouloir supprimer ce post ?")
         console.log(post._id)
-        axios.delete("http://localhost:3001/api/posts/delete/" + post._id)
-            .then(res => {
-                console.log(res)
-                navigate("/")
-            })
-            .catch(error => {
-                console.log("delete error : ", error)
-            })
+        mySwal.fire({
+            title: 'Do you want to delete this post?',
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Delete',
+            denyButtonText: `Don't delete`,
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                console.log('here')
+                axios.delete("http://localhost:3001/api/posts/" + post._id)
+                    .then(res => {
+                        // console.log(res)
+                        mySwal.fire('Post deleted')
+                        navigate("/")
+                    })
+                    .catch(error => {
+                        console.log("delete error : ", error)
+                    })
+
+            } else if (result.isDenied) {
+                mySwal.fire('Not deleted')
+            }
+        })
     };
 
 
-    //likes logic
+    //Likes logic
     const handleLike = (e) => {
         axios.post("http://localhost:3001/api/posts/" + post._id,
             {
-                "userId": currentUser,
                 "like": 1
             })
             .then(res => {
@@ -69,16 +87,24 @@ const SpecificCard = ({ post }) => {
             .catch(error => {
                 console.log("likes error", error)
             })
-
+    }
+    // Dislikes logic
+    const handleDislike = (e) => {
+        axios.post("http://localhost:3001/api/posts/" + post._id,
+            {
+                "like": -1
+            })
+            .then(res => {
+                console.log(res)
+            })
+            .catch(error => {
+                console.log("likes error", error)
+            })
     }
 
     useEffect(() => {
-        //     if (canModify == false) {
         checkUserRights();
-        console.log(post)
-        //     }
-        //     console.log('useEffect rights: ', canModify);
-    }, [canModify, checkUserRights])
+    }, [])
 
     return (
         <main className='specific-card'>
@@ -92,7 +118,7 @@ const SpecificCard = ({ post }) => {
             <aside className='specific-card-aside'>
                 <span onClick={(e) => handleLike(e)}>number of likes : {" " + post.likes}</span>
                 <br />
-                <span>number of dislikes : {" " + post.dislikes}</span>
+                <span onClick={(e) => handleDislike(e)}>number of dislikes : {" " + post.dislikes}</span>
                 <br />
                 Posté le {dateFormater(post.date)}
             </aside>

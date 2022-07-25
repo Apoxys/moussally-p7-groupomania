@@ -9,7 +9,7 @@ import { userTokenContext } from '../context/UserContext';
 const ThisPost = () => {
 
     const { userToken, setUserToken } = useContext(userTokenContext)
-    const [postData, setPostData] = useState([]);
+    const [postData, setPostData] = useState({});
 
     // Fetch data from specific post
     //define URLparams Object to get post id
@@ -21,10 +21,10 @@ const ThisPost = () => {
         axios.get(`http://localhost:3001/api/posts/${URLparams.id}`)
             .then(res => {
                 setPostData(res.data)
-                // console.log(res.data)
+                console.log(postData)
             })
             .catch(error => {
-                console.log(error, "dw, you'll get there")
+                console.log(error)
             })
     };
 

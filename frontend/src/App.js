@@ -20,21 +20,6 @@ const App = () => {
     const [userToken, setUserToken] = useState("")
     const [isAdmin, setIsAdmin] = useState(false)
 
-
-
-    // localStorage INIT (asyncStorage version community)
-    const storageAccess = localStorage
-    // Retrieve data from storage logic
-    const getDataFromStorage = () => {
-        const dataInStorage = storageAccess.getItem
-        if (!dataInStorage) {
-            return {}
-        } else {
-            return JSON.parse(dataInStorage)
-        };
-    }
-
-
     // declare if currentUser is connected
     return (
         <DataProvider value={{ currentUser, setCurrentUser }}>

@@ -30,10 +30,10 @@ const Nav = () => {
                     className={(nav) => (nav.isActive ? "nav-active" : "")}>
                     <li>Vos publications</li>
                 </NavLink>
-                <NavLink to={"/favorites/" + currentUser}
+                {/* <NavLink to={"/favorites/" + currentUser}
                     className={(nav) => (nav.isActive ? "nav-active" : "")}>
                     <li>Publications favorites</li>
-                </NavLink>
+                </NavLink> */}
                 <li>
                     <input type="submit" value="Disconnect"
                         onClick={handleDisconnect}

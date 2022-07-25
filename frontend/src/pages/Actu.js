@@ -19,6 +19,11 @@ const Actu = () => {
     const navigate = useNavigate();
 
     const getData = () => {
+        if (!currentUser) {  // reset userId and auth token if user resfreshes based on localStorage
+            setCurrentUser(localStorage.userConnected)
+            setUserToken(localStorage.userToken)
+        }
+
         axios.get('http://localhost:3001/api/posts')
             .then(res => {
                 setData(res.data)
@@ -29,14 +34,16 @@ const Actu = () => {
             })
     };
 
+
+
     useEffect(() => {
         if (!localStorage.userConnected) {
             navigate("/login") // go to login/signup if not connected
-        } else {
-            getData();
         }
+        getData();
 
-    }, [localStorage]);
+
+    }, [currentUser]);
 
     return (
 

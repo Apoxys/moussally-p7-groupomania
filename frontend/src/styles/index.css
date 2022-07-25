@@ -52,6 +52,15 @@
   border-radius: 20px;
 }
 
+.specific-card-article img {
+  max-height: 200px;
+  object-fit: contain;
+  transition: transform 0.5s ease;
+}
+.specific-card-article img:hover {
+  transform: scale(2);
+}
+
 .logup {
   display: flex;
   justify-content: center;

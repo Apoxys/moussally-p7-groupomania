@@ -1,28 +1,65 @@
 import axios from 'axios';
-import React, { useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useContext, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Card from '../components/Card';
 import Nav from '../components/Nav';
 import { userContext, userTokenContext } from '../context/UserContext';
 
 const YourPosts = () => {
     const { currentUser, setCurrentUser } = useContext(userContext)
+    const { userToken, setUserToken } = useContext(userTokenContext)
+    const [yourData, setYourData] = useState([])
+
+
     const navigate = useNavigate()
+
+    axios.defaults.headers.common['Authorization'] = userToken
+
+    const getYourData = () => {
+        if (!currentUser) {  // reset userId and auth token if user resfreshes based on localStorage
+            setCurrentUser(localStorage.userConnected)
+            setUserToken(localStorage.userToken)
+        }
+        axios.get('http://localhost:3001/api/posts/user-posts')
+            .then(res => {
+                setYourData(res.data)
+                console.log(yourData)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
 
     useEffect(() => {
         if (!localStorage.getItem("userConnected")) {
             navigate("/login")
         }
-        if (currentUser) {
-            axios.get('http://localhost:3001/api/posts')
-        }
-    }, [])
+        getYourData()
+    }, [currentUser])
 
     return (
         <div className='global'>
             <Nav />
-            <main>
+            <main className='maincontent'>
                 <h1>Ici les publications dont vous êtes à l'origine</h1>
+                <div className='postsection'>
+                    {
+                        !yourData.length ?
+                            "nothing"
+                            :
+                            yourData.map((post) =>
+                                <Link
+                                    key={"link_key" + post._id}
+                                    to={"/post/" + post._id}
+                                >
+                                    <Card
+                                        key={"card_key" + post._id}
+                                        post={post}
+                                    />
+                                </Link>
+                            )
+                    }
+                </div>
 
             </main>
         </div>
