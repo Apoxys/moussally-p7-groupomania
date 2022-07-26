@@ -1,11 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { userContext } from '../context/UserContext';
+import planetLogo from '../assets/GroupoLogos/red-planet-logo.png';
 
 
 const Nav = () => {
 
     const { currentUser, setCurrentUser } = useContext(userContext)
+    const [collapsed, setCollapsed] = useState(true)
 
     const navigate = useNavigate()
 
@@ -14,10 +16,22 @@ const Nav = () => {
         console.log('Nav localStorage: ', localStorage)
         navigate("/login")
     }
+
+    const handleCollapse = () => {
+        if (collapsed === true) {
+            setCollapsed(false)
+        } else {
+            setCollapsed(true)
+        }
+    }
+
     return (
         <div className="navigation">
-            <img className='icon' src='' alt='' />
-            <ul>
+            <button onClick={(e) => handleCollapse(e)}>
+                <img className='icon' src={planetLogo} alt='' />
+                {collapsed == true ? "Open Menu" : "Close Menu"}
+            </button>
+            <ul className={collapsed == true ? "collapsed" : "open"} >
                 <NavLink to="/"
                     className={(nav) => (nav.isActive ? "nav-active" : "")}>
                     <li>Actualité</li>
@@ -35,7 +49,7 @@ const Nav = () => {
                     <li>Publications favorites</li>
                 </NavLink> */}
                 <li>
-                    <input type="submit" value="Disconnect"
+                    <input className='disconnect' type="submit" value="Disconnect"
                         onClick={handleDisconnect}
                     />
                 </li>

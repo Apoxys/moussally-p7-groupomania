@@ -25,6 +25,10 @@ $tertiary_color : #4E5166;
     }
 }
 
+@mixin hoverShadows {
+    box-shadow: 0 0 20px $primary_color;
+}
+
 // réglages appliqués sur toute la page
 
 .global {

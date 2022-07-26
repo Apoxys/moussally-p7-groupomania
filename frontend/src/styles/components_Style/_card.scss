@@ -1,7 +1,11 @@
 .card {
     margin-bottom: 50px;
+    max-width: fit-content;
 
     &-article {
+        display: flex;
+        justify-content: space-between;
+
         width: 75%;
         min-width: 400px;
         max-width: 700px;
@@ -12,5 +16,28 @@
         border: 2px dashed $primary-color;
         border-radius: 20px;
 
+        //handle different length od title or text
+        &-text {
+            width: auto;
+        }
+
+    }
+
+    img {
+        max-width: calc(100% - 90%);
+        object-fit: contain;
+    }
+
+    &-aside {
+        display: flex;
+        flex-direction: column;
+
+        &-likes span {
+            margin: 0 10px 0 10px;
+        }
+
+        p {
+            margin: 0px;
+        }
     }
 }

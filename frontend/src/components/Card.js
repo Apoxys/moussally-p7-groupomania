@@ -19,15 +19,19 @@ const Card = ({ post }) => {
     return (
         <div className='card'>
             <article className='card-article'>
-                <h2>{post.title}</h2>
-                <p>{post.body}</p>
-                <img src={post.imageUrl} alt='' />Image of post {post.imageUrl}
+                <section className='card-article-text'>
+                    <h2>{post.title}</h2>
+                    <p>{post.body}</p>
+                </section>
+                <img src={post.imageUrl} alt='' />
+                {/* Image of post {post.imageUrl} */}
             </article>
             <aside className='card-aside'>
-                <span><FaRegThumbsUp /> {" " + post.likes}</span>
-                <span><FaRegThumbsDown /> {" " + post.dislikes}</span>
-                <br />
-                Posté le {dateFormater(post.date)}
+                <div className='card-aside-likes'>
+                    <span><FaRegThumbsUp /> {" " + post.likes}</span>
+                    <span><FaRegThumbsDown /> {" " + post.dislikes}</span>
+                </div>
+                <p>Posté le {dateFormater(post.date)}</p>
             </aside>
         </div>
     );

@@ -8,11 +8,16 @@
 }
 
 .navigation {
-  width: 33%;
   border-right: 3px double red;
   margin-right: 10px;
-  max-width: 300px;
-  min-width: 210px;
+  padding-right: 10px;
+  min-width: fit-content;
+  max-width: fit-content;
+  width: calc(100% + 10px);
+}
+.navigation .collapsed {
+  display: none;
+  overflow: hidden;
 }
 .navigation ul {
   list-style: none;
@@ -25,7 +30,18 @@
   color: inherit;
 }
 .navigation ul a {
-  margin: 5px;
+  margin: 15px;
+}
+.navigation ul a li:hover {
+  position: relative;
+}
+.navigation ul a li:hover::after {
+  content: "";
+  position: absolute;
+  bottom: -7px;
+  left: 0px;
+  border-bottom: solid 2px #FD2D01;
+  width: 40px;
 }
 .navigation ul .nav-active li {
   width: fit-content;
@@ -33,14 +49,43 @@
   color: white;
 }
 
-.icon {
-  background-image: url("../../assets/GroupoLogos/logo-left-font.png");
+.disconnect {
+  border-radius: 20%;
+  background-color: #FFD7D7;
+  border: 1px solid #4E5166;
+  transition: all 0.2s ease-out;
+}
+.disconnect:hover {
+  box-shadow: 0 0 20px #FD2D01;
+}
+
+button {
+  border-radius: 20%;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #FD2D01;
+  background-color: inherit;
+  cursor: pointer;
+  font-size: large;
+  padding: 20px;
+  transition: all 0.5s ease;
+}
+button .icon {
+  border-radius: 100%;
+  height: 100px;
+  object-fit: contain;
+}
+button:hover {
+  box-shadow: 0 0 20px #FD2D01;
 }
 
 .card {
   margin-bottom: 50px;
+  max-width: fit-content;
 }
 .card-article {
+  display: flex;
+  justify-content: space-between;
   width: 75%;
   min-width: 400px;
   max-width: 700px;
@@ -51,14 +96,55 @@
   border: 2px dashed #FD2D01;
   border-radius: 20px;
 }
+.card-article-text {
+  width: auto;
+}
+.card img {
+  max-width: 10%;
+  object-fit: contain;
+}
+.card-aside {
+  display: flex;
+  flex-direction: column;
+}
+.card-aside-likes span {
+  margin: 0 10px 0 10px;
+}
+.card-aside p {
+  margin: 0px;
+}
 
+.specific-card-article figcaption {
+  font-style: italic;
+}
 .specific-card-article img {
   max-height: 200px;
   object-fit: contain;
-  transition: transform 0.5s ease;
 }
 .specific-card-article img:hover {
-  transform: scale(2);
+  cursor: pointer;
+}
+.specific-card-aside {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.specific-card-aside-likes span {
+  margin: 0 10px 0 10px;
+}
+.specific-card-aside p {
+  margin: 0;
+}
+.specific-card-modify {
+  display: flex;
+}
+.specific-card-modify button {
+  border-radius: 20%;
+  border: 2px solid #FD2D01;
+  background-color: inherit;
+  cursor: pointer;
+  padding: 5px;
+  margin: 0 5px 0 5px;
 }
 
 .logup {

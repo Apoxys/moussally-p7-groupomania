@@ -1,9 +1,44 @@
-.specific-card-article img {
-    max-height: 200px;
-    object-fit: contain;
-    transition: transform 0.5s ease;
+.specific-card {
+    &-article {
+        figcaption {
+            font-style: italic;
+        }
 
-    // &:hover {
-    //     transform: scale(2);
-    // }
+        img {
+            max-height: 200px;
+            object-fit: contain;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+    &-aside {
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+
+        &-likes span {
+            margin: 0 10px 0 10px;
+        }
+
+        p {
+            margin: 0;
+        }
+    }
+
+    &-modify {
+        display: flex;
+
+        button {
+            border-radius: 20%;
+            border: 2px solid $primary_color;
+            background-color: inherit;
+            cursor: pointer;
+            padding: 5px;
+            margin: 0 5px 0 5px;
+
+        }
+    }
 }

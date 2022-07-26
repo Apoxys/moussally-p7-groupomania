@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import logo from '../assets/GroupoLogos/logo-left-font.png'
@@ -6,6 +6,12 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
 const Signup = () => {
+
+    const [passwordShown, setPasswordShown] = useState(false);
+
+    const handleToggle = () => {
+        setPasswordShown(!passwordShown)
+    }
 
     //popup alert MySweetAlert with react
     const mySwal = withReactContent(Swal)
@@ -40,7 +46,9 @@ const Signup = () => {
                 </label>
                 <label className='logup-form-pwd' htmlFor="userPassword">
                     Password
-                    <input type='text' name="userPassword" required />
+                    <input type={passwordShown ? 'text' : 'password'} name="userPassword" required />
+                    <span onClick={() => handleToggle()}>{passwordShown ? 'Hide Password' : 'Show Password'}</span>
+
                 </label>
                 <input type="submit" value="Sign up!" />
             </form>

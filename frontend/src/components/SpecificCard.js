@@ -99,6 +99,8 @@ const SpecificCard = ({ post }) => {
                 axios.get(`http://localhost:3001/api/posts/${URLparams.id}`)
                     .then(res => {
                         setLikes(res.data.likes)
+                        setDislikes(res.data.dislikes)
+
                     })
                     .catch(error => {
                         console.log(error)
@@ -118,6 +120,7 @@ const SpecificCard = ({ post }) => {
             .then(res => {
                 axios.get(`http://localhost:3001/api/posts/${URLparams.id}`)
                     .then(res => {
+                        setLikes(res.data.likes)
                         setDislikes(res.data.dislikes)
                     })
                     .catch(error => {
@@ -136,47 +139,43 @@ const SpecificCard = ({ post }) => {
     return (
         <main className='specific-card'>
             <article className='specific-card-article'>
-
                 <h2>{post.title}</h2>
                 <p>{post.body}</p>
                 <figure>
-                    <img src={post.imageUrl} alt='' onClick={(e) => { enlargeImage(e) }} />
                     <figcaption>Cliquez l'image pour voir en grand</figcaption>
+                    <img src={post.imageUrl} alt='' onClick={(e) => { enlargeImage(e) }} />
                 </figure>
-
             </article>
-
             <aside className='specific-card-aside'>
-
-                <span onClick={(e) => handleLike(e)}><FaRegThumbsUp />
-                    {" " +
-                        `${likes ?
-                            likes
-                            :
-                            post.likes
-                        }`
-                    }
-                </span>
-                <br />
-                <span onClick={(e) => handleDislike(e)}><FaRegThumbsDown />
-                    {" " +
-                        `${dislikes ?
-                            dislikes
-                            :
-                            post.dislikes
-                        }`
-                    }
-                </span>
-                <br />
-                Posté le {dateFormater(post.date)}
+                <div className='specific-card-aside-likes'>
+                    <span onClick={(e) => handleLike(e)}><FaRegThumbsUp />
+                        {" " +
+                            `${likes ?
+                                likes
+                                :
+                                post.likes
+                            }`
+                        }
+                    </span>
+                    <span onClick={(e) => handleDislike(e)}><FaRegThumbsDown />
+                        {" " +
+                            `${dislikes ?
+                                dislikes
+                                :
+                                post.dislikes
+                            }`
+                        }
+                    </span>
+                </div>
+                <p>Posté le {dateFormater(post.date)}</p>
             </aside>
             <div>
                 {
                     canModify ?
-                        < div >
+                        <div className='specific-card-modify'>
                             <button onClick={() => { navigate("/edit-post/" + post._id) }}>Modify post</button>
                             <button onClick={() => deletePostHandler()}>Delete post</button>
-                        </div >
+                        </div>
                         :
                         ""
                 }

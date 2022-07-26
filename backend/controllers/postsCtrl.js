@@ -117,7 +117,8 @@ exports.likes = (req, res, next) => {
         .then((currentUser) => {
             post.findById(currentPostId)
                 .then((currentPost) => {
-                    //check user like status => if user already likes this do nothing more, else increment likes.
+
+                    //check user like status
                     if (req.body.like == 1) {
                         // if users already liked, cancels the like
                         if (currentUser.userLiked.includes(currentPostId)) {
@@ -126,12 +127,18 @@ exports.likes = (req, res, next) => {
                             const thisPostIndex = currentUser.userLiked.indexOf(currentPost._id)
                             currentUser.userLiked.splice(thisPostIndex, 1)
                         } else {
+                            //if user disliked before, substract the dislike to like instead
+                            if (currentUser.userDisliked.includes(currentPostId)) {
+                                currentPost.dislikes--
+                                const thisPostIndex = currentUser.userDisliked.indexOf(currentPost._id)
+                                currentUser.userDisliked.splice(thisPostIndex, 1)
+                            }
                             currentPost.likes++
                             currentUser.userLiked.push(currentPostId)
                         }
                     }
 
-                    //check user dislike status => if user already dislikes this do nothing more, else increment dislikes.
+                    //check user dislike status
                     if (req.body.like == -1) {
                         // if users already disliked, cancels the dislike
                         if (currentUser.userDisliked.includes(currentPostId)) {
@@ -141,6 +148,12 @@ exports.likes = (req, res, next) => {
                             currentUser.userDisliked.splice(thisPostIndex, 1)
 
                         } else {
+                            //if user liked before, substract the like to dislike instead
+                            if (currentUser.userLiked.includes(currentPostId)) {
+                                currentPost.likes--
+                                const thisPostIndex = currentUser.userLiked.indexOf(currentPost._id)
+                                currentUser.userLiked.splice(thisPostIndex, 1)
+                            }
                             currentPost.dislikes++
                             currentUser.userDisliked.push(currentPostId)
                         }

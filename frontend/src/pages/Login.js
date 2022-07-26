@@ -13,6 +13,12 @@ const Login = () => {
     const { isAdmin, setIsAdmin } = useContext(userAdminContext)
     let navigate = useNavigate();
 
+    const [passwordShown, setPasswordShown] = useState(false);
+
+    const handleToggle = () => {
+        setPasswordShown(!passwordShown)
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         axios.post('http://localhost:3001/api/auth/login', {
@@ -48,7 +54,9 @@ const Login = () => {
                 </label>
                 <label className='logup-form-pwd' htmlFor="userPassword">
                     Password
-                    <input type='password' name="userPassword" required />
+                    <input type={passwordShown ? 'text' : 'password'} name="userPassword" required />
+                    {/* icone oeil au clic change le type  */}
+                    <span onClick={() => handleToggle()}>{passwordShown ? 'Hide Password' : 'Show Password'}</span>
                 </label>
                 <input type='submit' value="Log in!" />
             </form>

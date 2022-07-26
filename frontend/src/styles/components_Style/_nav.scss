@@ -1,17 +1,37 @@
 .navigation {
-    width: 33%;
+
     border-right: 3px double red;
     margin-right: 10px;
-    max-width: 300px;
-    min-width: 210px;
+    padding-right: 10px;
+    min-width: fit-content;
+    max-width: fit-content;
+    width: calc(100% + 10px);
+
+    .collapsed {
+        display: none;
+        overflow: hidden
+    }
 
     ul {
         @include noStyleLinks;
         list-style: none;
 
         a {
+            margin: 15px;
 
-            margin: 5px;
+            li:hover {
+                position: relative;
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    bottom: -7px;
+                    left: 0px;
+                    border-bottom: solid 2px $primary_color;
+                    width: 40px;
+
+                }
+            }
         }
 
         .nav-active {
@@ -26,8 +46,37 @@
     }
 }
 
+.disconnect {
+    border-radius: 20%;
+    background-color: $secondary_color;
+    border: 1px solid $tertiary_color;
+    transition: all 0.2s ease-out;
 
 
-.icon {
-    background-image: url("../../assets/GroupoLogos/logo-left-font.png");
+    &:hover {
+        @include hoverShadows
+    }
+
+}
+
+button {
+    border-radius: 20%;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid $primary_color;
+    background-color: inherit;
+    cursor: pointer;
+    font-size: large;
+    padding: 20px;
+    transition: all 0.5s ease;
+
+    .icon {
+        border-radius: 100%;
+        height: 100px;
+        object-fit: contain;
+    }
+
+    &:hover {
+        @include hoverShadows
+    }
 }
