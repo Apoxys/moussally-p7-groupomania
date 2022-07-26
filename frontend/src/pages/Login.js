@@ -27,7 +27,6 @@ const Login = () => {
                 localStorage.setItem("userConnected", `${res.data.userId}`)
                 localStorage.setItem("userToken", `${res.data.token}`)
                 localStorage.setItem("isAdmin", `${res.data.isAdmin}`)
-                console.log(typeof (isAdmin))
                 navigate("/")
             })
             .catch(error => {

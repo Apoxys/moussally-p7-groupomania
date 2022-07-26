@@ -1,12 +1,14 @@
 import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import logo from '../assets/GroupoLogos/logo-left-font.png'
-
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 const Signup = () => {
 
-    const navigate = useNavigate();
+    //popup alert MySweetAlert with react
+    const mySwal = withReactContent(Swal)
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -18,8 +20,10 @@ const Signup = () => {
                 console.log(e.target.userMail.value)
                 console.log(res)
                 // créer une alerte pour confirmer la création de compte, puis renvoyer vers la page Login pour farire la connection
-                window.alert("Votre compte a été créé ! Rendez vous sur la page Login pour vous connecter !")
-                navigate("/Login")
+                mySwal.fire({
+                    title: <strong>Votre compte a bien été créé !</strong>,
+                    html: <p>Rendez vous sur la page <a href="/login">Login</a> pour vous connecter</p>
+                })
             })
             .catch(error => {
                 console.log(error)

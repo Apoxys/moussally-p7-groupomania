@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaRegThumbsUp, FaRegThumbsDown } from 'react-icons/fa';
 
 
 const Card = ({ post }) => {
@@ -23,8 +24,8 @@ const Card = ({ post }) => {
                 <img src={post.imageUrl} alt='' />Image of post {post.imageUrl}
             </article>
             <aside className='card-aside'>
-                <span>number of likes : {" " + post.likes}</span>
-                <span>number of dislikes : {" " + post.dislikes}</span>
+                <span><FaRegThumbsUp /> {" " + post.likes}</span>
+                <span><FaRegThumbsDown /> {" " + post.dislikes}</span>
                 <br />
                 Posté le {dateFormater(post.date)}
             </aside>

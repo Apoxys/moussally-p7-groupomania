@@ -26,7 +26,7 @@ export const TokenProvider = ({ children }) => {
 export const userAdminContext = createContext(Boolean)
 
 export const AdminProvider = ({ children }) => {
-    const [isAdmin, setIsAdmin] = useState(false)
+    const [isAdmin, setIsAdmin] = useState(Boolean)
     return (
         <userAdminContext.Provider value={{ isAdmin, setIsAdmin }} >
             {children}

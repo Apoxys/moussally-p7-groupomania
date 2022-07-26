@@ -39,7 +39,7 @@ exports.createPost = (req, res, next) => {
 //Update
 exports.modifyPost = (req, res, next) => {
     let postObject = req.body
-    console.log(req.file)
+    // console.log(req.file)
     post.findOne({ _id: req.params.id })
         .then(oldPost => {
             if (req.file) {
@@ -117,9 +117,6 @@ exports.likes = (req, res, next) => {
         .then((currentUser) => {
             post.findById(currentPostId)
                 .then((currentPost) => {
-                    console.log(currentPost._id)
-                    console.log(currentUser.userLiked.includes(currentPostId))
-
                     //check user like status => if user already likes this do nothing more, else increment likes.
                     if (req.body.like == 1) {
                         // if users already liked, cancels the like

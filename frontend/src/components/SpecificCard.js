@@ -1,12 +1,16 @@
 import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import { userContext, userTokenContext, userAdminContext } from '../context/UserContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import { FaRegThumbsUp, FaRegThumbsDown } from 'react-icons/fa';
+
 
 
 const SpecificCard = ({ post }) => {
+
+    let URLparams = useParams()
 
     //popup alert MySweetAlert with react
     const mySwal = withReactContent(Swal)
@@ -18,21 +22,33 @@ const SpecificCard = ({ post }) => {
     const { userToken, setUserToken } = useContext(userTokenContext)
     const { isAdmin, setIsAdmin } = useContext(userAdminContext)
 
+    //define defaults axios headers
     axios.defaults.headers.common['Authorization'] = userToken
 
+    //checking users rights for modification / deletion
     const [canModify, setCanModify] = useState(false)
+
+    //init likes/dislikes counters
+    const [likes, setLikes] = useState(Number)
+    const [dislikes, setDislikes] = useState(Number)
+
+    //pop to display enlarged image
+    const enlargeImage = () => {
+        mySwal.fire({
+            imageUrl: post.imageUrl
+        })
+    }
 
     //Check if users have rights to modify current post
     const checkUserRights = () => {
-
+        console.log(currentUser, post.authorId)
         if (isAdmin === 'true' || currentUser == post.authorId) {
             setCanModify(true)
         }
-
         console.log('check: ', canModify)
     }
 
-    // import from Card component / used to update
+    // Date formater to display FR date
     const dateFormater = (date) => {
         let newDate = new Date(date).toLocaleDateString("fr-FR", {
             year: "numeric",
@@ -43,35 +59,33 @@ const SpecificCard = ({ post }) => {
         })
         return newDate
     }
-    //endofimport
+
 
     //delete logic
     const deletePostHandler = () => {
         console.log(post._id)
         mySwal.fire({
-            title: 'Do you want to delete this post?',
+            title: 'Do you really want to delete this post?',
             showDenyButton: true,
             showCancelButton: true,
             confirmButtonText: 'Delete',
             denyButtonText: `Don't delete`,
-        }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
-            if (result.isConfirmed) {
-                console.log('here')
-                axios.delete("http://localhost:3001/api/posts/" + post._id)
-                    .then(res => {
-                        // console.log(res)
-                        mySwal.fire('Post deleted')
-                        navigate("/")
-                    })
-                    .catch(error => {
-                        console.log("delete error : ", error)
-                    })
-
-            } else if (result.isDenied) {
-                mySwal.fire('Not deleted')
-            }
         })
+            .then((result) => {
+                if (result.isConfirmed) {
+                    axios.delete("http://localhost:3001/api/posts/" + post._id)
+                        .then(res => {
+                            mySwal.fire('Post deleted')
+                            navigate("/")
+                        })
+                        .catch(error => {
+                            console.log("delete error : ", error)
+                        })
+
+                } else if (result.isDenied) {
+                    mySwal.fire('Not deleted')
+                }
+            })
     };
 
 
@@ -82,7 +96,14 @@ const SpecificCard = ({ post }) => {
                 "like": 1
             })
             .then(res => {
-                console.log(res)
+                axios.get(`http://localhost:3001/api/posts/${URLparams.id}`)
+                    .then(res => {
+                        setLikes(res.data.likes)
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
+
             })
             .catch(error => {
                 console.log("likes error", error)
@@ -95,7 +116,13 @@ const SpecificCard = ({ post }) => {
                 "like": -1
             })
             .then(res => {
-                console.log(res)
+                axios.get(`http://localhost:3001/api/posts/${URLparams.id}`)
+                    .then(res => {
+                        setDislikes(res.data.dislikes)
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
             })
             .catch(error => {
                 console.log("likes error", error)
@@ -104,7 +131,7 @@ const SpecificCard = ({ post }) => {
 
     useEffect(() => {
         checkUserRights();
-    }, [])
+    }, [checkUserRights])
 
     return (
         <main className='specific-card'>
@@ -112,13 +139,34 @@ const SpecificCard = ({ post }) => {
 
                 <h2>{post.title}</h2>
                 <p>{post.body}</p>
-                <img src={post.imageUrl} alt='' />
+                <figure>
+                    <img src={post.imageUrl} alt='' onClick={(e) => { enlargeImage(e) }} />
+                    <figcaption>Cliquez l'image pour voir en grand</figcaption>
+                </figure>
+
             </article>
 
             <aside className='specific-card-aside'>
-                <span onClick={(e) => handleLike(e)}>number of likes : {" " + post.likes}</span>
+
+                <span onClick={(e) => handleLike(e)}><FaRegThumbsUp />
+                    {" " +
+                        `${likes ?
+                            likes
+                            :
+                            post.likes
+                        }`
+                    }
+                </span>
                 <br />
-                <span onClick={(e) => handleDislike(e)}>number of dislikes : {" " + post.dislikes}</span>
+                <span onClick={(e) => handleDislike(e)}><FaRegThumbsDown />
+                    {" " +
+                        `${dislikes ?
+                            dislikes
+                            :
+                            post.dislikes
+                        }`
+                    }
+                </span>
                 <br />
                 Posté le {dateFormater(post.date)}
             </aside>

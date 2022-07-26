@@ -13,10 +13,10 @@ const EditPost = () => {
         axios.get(`http://localhost:3001/api/posts/${URLparams.id}`)
             .then(res => {
                 setPost(res.data)
-                // console.log(res.data)
+                console.log(res.data)
             })
             .catch(error => {
-                console.log(error, "dw, you'll get there")
+                console.log(error)
             })
     };
 
@@ -25,7 +25,7 @@ const EditPost = () => {
     const { userToken, setUserToken } = useContext(userTokenContext)
 
     axios.defaults.headers.common['Authorization'] = userToken
-    console.log('notrepost: ', post._id)
+
     //import from createpost page / used to update
     const [title, setTitle] = useState("")
     const [body, setBody] = useState("")
@@ -60,6 +60,7 @@ const EditPost = () => {
 
     useEffect(() => {
         getDataToEdit();
+        console.log(imgPostFile)
     }, [])
 
     return (
@@ -82,7 +83,8 @@ const EditPost = () => {
                         <input type="file" name="imagePost"
                             id="imagePost"
                             accept='image/png, image/jpeg, image/jpg, image/gif'
-                            defaultValue={postImgInput}
+                            defaultValue={post.imageUrl
+                            }
                             onChange={handlePostImg} />
                     </label>
                     <input type="submit" value="Envoyer" />

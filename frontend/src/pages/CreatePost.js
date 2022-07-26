@@ -3,6 +3,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Nav from '../components/Nav';
 import { userContext, userTokenContext } from '../context/UserContext';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 const CreatePost = () => {
     const [authorId, setAuthorId] = useState()
@@ -11,18 +13,12 @@ const CreatePost = () => {
     const { currentUser, setCurrentUser } = useContext(userContext)
     const { userToken, setUserToken } = useContext(userTokenContext)
 
+    //popup alert MySweetAlert with react
+    const mySwal = withReactContent(Swal)
+
     const navigate = useNavigate()
 
     axios.defaults.headers.common['Authorization'] = userToken
-
-    useEffect(() => {
-        if (!localStorage.getItem("userConnected")) {
-            navigate("/login")
-        }
-        if (currentUser) {
-            setAuthorId(localStorage.getItem("userConnected"))
-        }
-    }, [currentUser, navigate])
 
     const handlePostImg = (e) => {
         e.preventDefault()
@@ -43,11 +39,24 @@ const CreatePost = () => {
         axios.post('http://localhost:3001/api/posts', formData)
             .then(res => {
                 console.log(res)
+                mySwal.fire({
+                    title: 'Your post is created !'
+                })
+                navigate('/')
             })
             .catch(error => {
                 console.log(error)
             })
     };
+
+    useEffect(() => {
+        if (!localStorage.getItem("userConnected")) {
+            navigate("/login")
+        }
+        if (currentUser) {
+            setAuthorId(localStorage.getItem("userConnected"))
+        }
+    }, [currentUser, navigate])
 
     return (
         <div className='global'>
