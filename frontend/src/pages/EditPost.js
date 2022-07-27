@@ -6,25 +6,14 @@ import Nav from '../components/Nav';
 
 const EditPost = () => {
 
+    //Define context and set-headers
+    const { userToken, setUserToken } = useContext(userTokenContext)
+    axios.defaults.headers.common['Authorization'] = userToken
+
     let URLparams = useParams()
-    const [post, setPost] = useState({})
-
-    const getDataToEdit = () => {
-        axios.get(`http://localhost:3001/api/posts/${URLparams.id}`)
-            .then(res => {
-                setPost(res.data)
-                console.log(res.data)
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    };
-
     let navigate = useNavigate();
 
-    const { userToken, setUserToken } = useContext(userTokenContext)
-
-    axios.defaults.headers.common['Authorization'] = userToken
+    const [post, setPost] = useState({})
 
     //import from createpost page / used to update
     const [title, setTitle] = useState("")
@@ -32,6 +21,19 @@ const EditPost = () => {
     const [postImgInput, setPostImgInput] = useState()
     const [imgPostFile, setImgPostFile] = useState()
     //endofimport
+
+
+
+    const getDataToEdit = () => {
+        axios.get(`http://localhost:3001/api/posts/${URLparams.id}`)
+            .then(res => {
+                setPost(res.data)
+
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    };
 
     //imported and modified from create post /used to update
     const handlePostImg = (e) => {
@@ -60,7 +62,7 @@ const EditPost = () => {
 
     useEffect(() => {
         getDataToEdit();
-        console.log(imgPostFile)
+        console.log(postImgInput)
     }, [])
 
     return (
@@ -68,26 +70,25 @@ const EditPost = () => {
             <Nav />
 
             <div className='maincontent'>
-                <p>Ici vous pouvez modifier une publication</p>
+                <h1>Ici vous pouvez modifier une publication</h1>
                 <form className='form-create-post' onSubmit={(e) => handleUpdateSubmit(e)} encType="multipart/form-data">
                     <label htmlFor='title'>
-                        Titre de la publication :
+                        Nouveau titre de la publication
                         <input type="text" name="title" defaultValue={post.title} onChange={(e) => setTitle(e.target.value)} required />
                     </label>
                     <label htmlFor='body'>
-                        Dites nous tout :
-                        <textarea name="body" defaultValue={post.body} onChange={(e) => setBody(e.target.value)} required></textarea>
+                        Nouveau contenu (ou correction)
+                        <textarea name="body" defaultValue={post.body} onChange={(e) => setBody(e.target.value)} rows={5} required />
                     </label>
                     <label htmlFor='image'>
-                        Une image vaut mille mots
+                        Vous voulez changer d'image ? ou en mettre une ?
                         <input type="file" name="imagePost"
                             id="imagePost"
                             accept='image/png, image/jpeg, image/jpg, image/gif'
-                            defaultValue={post.imageUrl
-                            }
+                            defaultValue={post.imageUrl}
                             onChange={handlePostImg} />
                     </label>
-                    <input type="submit" value="Envoyer" />
+                    <input className='form-button post' type="submit" value="Envoyer" />
                 </form>
                 <button className='cancel' onClick={() => { navigate("/post/" + post._id) }}>Annuler</button>
             </div>

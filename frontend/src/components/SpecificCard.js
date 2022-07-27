@@ -28,6 +28,8 @@ const SpecificCard = ({ post }) => {
     //checking users rights for modification / deletion
     const [canModify, setCanModify] = useState(false)
 
+    const [hasImage, setHasImage] = useState(false)
+
     //init likes/dislikes counters
     const [likes, setLikes] = useState(Number)
     const [dislikes, setDislikes] = useState(Number)
@@ -48,6 +50,16 @@ const SpecificCard = ({ post }) => {
         console.log('check: ', canModify)
     }
 
+    //check if ther is an image in post
+    const checkImg = () => {
+        if (post.imageUrl === '') {
+            setHasImage(false)
+        } else {
+            setHasImage(true)
+        }
+        console.log('is image ? ', hasImage)
+    }
+
     // Date formater to display FR date
     const dateFormater = (date) => {
         let newDate = new Date(date).toLocaleDateString("fr-FR", {
@@ -60,7 +72,7 @@ const SpecificCard = ({ post }) => {
         return newDate
     }
 
-
+    //delete - likes - dislikes LOGIC
     //delete logic
     const deletePostHandler = () => {
         console.log(post._id)
@@ -134,6 +146,7 @@ const SpecificCard = ({ post }) => {
 
     useEffect(() => {
         checkUserRights();
+        checkImg();
     }, [checkUserRights])
 
     return (
@@ -141,10 +154,16 @@ const SpecificCard = ({ post }) => {
             <article className='specific-card-article'>
                 <h2>{post.title}</h2>
                 <p>{post.body}</p>
-                <figure>
-                    <figcaption>Cliquez l'image pour voir en grand</figcaption>
-                    <img src={post.imageUrl} alt='' onClick={(e) => { enlargeImage(e) }} />
-                </figure>
+                {
+                    hasImage ?
+
+                        <figure>
+                            <figcaption>Cliquez l'image pour voir en grand</figcaption>
+                            <img src={post.imageUrl} alt='' onClick={(e) => { enlargeImage(e) }} />
+                        </figure>
+                        :
+                        <i>aucune image sur cette publication</i>
+                }
             </article>
             <aside className='specific-card-aside'>
                 <div className='specific-card-aside-likes'>

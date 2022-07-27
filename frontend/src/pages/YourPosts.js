@@ -45,7 +45,10 @@ const YourPosts = () => {
                 <div className='postsection'>
                     {
                         !yourData.length ?
-                            "nothing"
+                            <div className='empty'>
+                                <p>Vous n'avez encore rien publié. </p>
+                                <p>Rendez vous sur la page <Link to='/publish'>Publier un nouveau post </Link> pour commencer !</p>
+                            </div>
                             :
                             yourData.map((post) =>
                                 <Link

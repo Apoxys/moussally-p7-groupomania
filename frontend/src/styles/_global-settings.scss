@@ -7,6 +7,7 @@
     font-family: 'Lato', sans-serif;
 }
 
+
 //couleurs principales (cf specifications techniques)
 $primary_color : #FD2D01;
 $secondary_color : #FFD7D7;
@@ -27,6 +28,15 @@ $tertiary_color : #4E5166;
 
 @mixin hoverShadows {
     box-shadow: 0 0 20px $primary_color;
+}
+
+@mixin formButton {
+    border-radius: 20%;
+    border: 2px solid $primary_color;
+    background-color: inherit;
+    cursor: pointer;
+    padding: 5px;
+    margin: 0 5px 0 5px;
 }
 
 // réglages appliqués sur toute la page

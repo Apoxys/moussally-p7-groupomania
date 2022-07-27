@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
-import logo from '../assets/GroupoLogos/logo-left-font.png'
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
+import logo from '../assets/GroupoLogos/logo-left-font.png';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import { FaEyeSlash, FaEye } from 'react-icons/fa';
 
 const Signup = () => {
 
@@ -38,7 +39,7 @@ const Signup = () => {
     return (
         <div className='logup'>
             <img className='logo' src={logo} alt='logo groupomania' />
-            <h1>This is a Signup page</h1>
+            <h1>Signup page</h1>
             <form className='logup-form' onSubmit={(e) => handleSubmit(e)}>
                 <label className='logup-form-email' htmlFor='userMail'>
                     E-mail
@@ -47,7 +48,7 @@ const Signup = () => {
                 <label className='logup-form-pwd' htmlFor="userPassword">
                     Password
                     <input type={passwordShown ? 'text' : 'password'} name="userPassword" required />
-                    <span onClick={() => handleToggle()}>{passwordShown ? 'Hide Password' : 'Show Password'}</span>
+                    <span onClick={() => handleToggle()}>{passwordShown ? <FaEyeSlash /> : <FaEye />}</span>
 
                 </label>
                 <input type="submit" value="Sign up!" />

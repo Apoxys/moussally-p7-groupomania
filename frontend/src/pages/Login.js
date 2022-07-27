@@ -2,7 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { userAdminContext, userContext, userTokenContext } from '../context/UserContext';
-import logo from '../assets/GroupoLogos/logo-left-font.png'
+import logo from '../assets/GroupoLogos/logo-left-font.png';
+import { FaEyeSlash, FaEye } from 'react-icons/fa';
 
 
 
@@ -46,7 +47,7 @@ const Login = () => {
     return (
         <div className='logup'>
             <img className='logo' src={logo} alt='logo groupomania' />
-            <h1>This is a login page</h1>
+            <h1>Login page</h1>
             <form className='logup-form' onSubmit={(e) => handleSubmit(e)}>
                 <label className='logup-form-email' htmlFor='userMail'>
                     E-mail
@@ -56,11 +57,11 @@ const Login = () => {
                     Password
                     <input type={passwordShown ? 'text' : 'password'} name="userPassword" required />
                     {/* icone oeil au clic change le type  */}
-                    <span onClick={() => handleToggle()}>{passwordShown ? 'Hide Password' : 'Show Password'}</span>
+                    <span onClick={() => handleToggle()}>{passwordShown ? <FaEyeSlash /> : <FaEye />}</span>
                 </label>
                 <input type='submit' value="Log in!" />
             </form>
-            <br />
+
             <p>No account yet ? Create one !</p>
             <NavLink to="/signup">
                 Sign up !

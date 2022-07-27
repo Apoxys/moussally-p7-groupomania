@@ -3,7 +3,6 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { userContext } from '../context/UserContext';
 import planetLogo from '../assets/GroupoLogos/red-planet-logo.png';
 
-
 const Nav = () => {
 
     const { currentUser, setCurrentUser } = useContext(userContext)
@@ -29,7 +28,7 @@ const Nav = () => {
         <div className="navigation">
             <button onClick={(e) => handleCollapse(e)}>
                 <img className='icon' src={planetLogo} alt='' />
-                {collapsed == true ? "Open Menu" : "Close Menu"}
+                {collapsed == true ? "Menu" : "Close Menu"}
             </button>
             <ul className={collapsed == true ? "collapsed" : "open"} >
                 <NavLink to="/"

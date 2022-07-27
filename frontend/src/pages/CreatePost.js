@@ -65,18 +65,18 @@ const CreatePost = () => {
                 <h1>Publiez ici</h1>
                 < form className='form-create-post' onSubmit={(e) => handlePostSubmit(e)} encType="multipart/form-data" >
                     <label htmlFor='title'>
-                        Titre de la publication :
+                        Titre de la publication
                         <input type="text" name="title" placeholder='Le titre de votre publication' required />
                     </label>
                     <label htmlFor='body'>
-                        Dites nous tout :
-                        <textarea name="body" placeholder='Votre publication' required></textarea>
+                        Dites nous tout (et surtout dites le aux autres)
+                        <textarea name="body" placeholder='Votre publication' rows={5} required></textarea>
                     </label>
                     <label htmlFor='image'>
-                        Une image vaut mille mots
+                        Une image vaut mille mots : mettez en une !
                         <input type="file" name="imagePost" id="imagePost" accept='image/png, image/jpeg, image/jpg, image/gif' value={postImgInput} onChange={handlePostImg} />
                     </label>
-                    <input type="submit" value="Envoyer" />
+                    <input className='form-button post' type="submit" value="Publier" />
                 </form >
             </div>
         </div >

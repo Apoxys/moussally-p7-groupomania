@@ -8,7 +8,7 @@
 }
 
 .navigation {
-  border-right: 3px double red;
+  border-right: 3px double #FD2D01;
   margin-right: 10px;
   padding-right: 10px;
   min-width: fit-content;
@@ -67,18 +67,27 @@ button {
   background-color: inherit;
   cursor: pointer;
   font-size: large;
-  padding: 20px;
+  padding: 10px;
   transition: all 0.5s ease;
 }
 button .icon {
+  display: flex;
+  align-self: center;
   border-radius: 100%;
-  height: 100px;
+  height: 75px;
+  width: 75px;
   object-fit: contain;
 }
 button:hover {
   box-shadow: 0 0 20px #FD2D01;
 }
 
+@media screen and (max-width: 400px) {
+  button .icon {
+    height: 35px;
+    width: 35px;
+  }
+}
 .card {
   margin-bottom: 50px;
   max-width: fit-content;
@@ -87,25 +96,30 @@ button:hover {
   display: flex;
   justify-content: space-between;
   width: 75%;
-  min-width: 400px;
+  min-width: 350px;
   max-width: 700px;
   max-height: 100px;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding: 10px;
   border: 2px dashed #FD2D01;
   border-radius: 20px;
 }
 .card-article-text {
-  width: auto;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+.card-article-text h2 {
+  margin: 0;
 }
 .card img {
-  max-width: 10%;
+  max-width: inherit;
+  max-height: inherit;
   object-fit: contain;
 }
 .card-aside {
   display: flex;
   flex-direction: column;
+  margin-top: 5px;
 }
 .card-aside-likes span {
   margin: 0 10px 0 10px;
@@ -158,6 +172,10 @@ button:hover {
   align-items: center;
   flex-direction: column;
 }
+.logup-form label {
+  display: flex;
+  flex-direction: column;
+}
 .logup-form-email {
   margin-top: 10px;
   margin: 10px;
@@ -178,9 +196,44 @@ button:hover {
 .postsection a:visited {
   color: inherit;
 }
+.postsection .empty a {
+  text-decoration: underline;
+}
+
+.maincontent {
+  align-self: center;
+  width: 700px;
+}
+.maincontent h1 {
+  display: flex;
+  justify-content: center;
+}
+.maincontent .cancel {
+  border-radius: 20%;
+  border: 2px solid #FD2D01;
+  background-color: inherit;
+  cursor: pointer;
+  padding: 5px;
+  margin: 0 5px 0 5px;
+}
 
 .form-create-post {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-content: center;
+}
+.form-create-post label {
+  display: flex;
+  flex-direction: column;
+  margin: 15px;
+}
+.form-create-post .form-button {
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #FFD7D7;
+  font-weight: bold;
+}
+.form-create-post .post {
+  width: fit-content;
+  align-self: center;
 }/*# sourceMappingURL=index.css.map */

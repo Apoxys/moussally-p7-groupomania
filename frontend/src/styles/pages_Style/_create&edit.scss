@@ -1,5 +1,40 @@
+.maincontent {
+    align-self: center;
+    width: 700px;
+
+    h1 {
+        display: flex;
+        justify-content: center;
+    }
+
+    .cancel {
+        @include formButton
+    }
+}
+
 .form-create-post {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-content: center;
+
+    label {
+        display: flex;
+        flex-direction: column;
+        margin: 15px;
+    }
+
+    .form-button {
+        padding: 5px;
+        border-radius: 5px;
+        background-color: $secondary_color;
+        font-weight: bold;
+    }
+
+    .post {
+        width: fit-content;
+        align-self: center;
+    }
+
+
+
 }
