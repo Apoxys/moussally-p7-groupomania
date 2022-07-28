@@ -37,6 +37,7 @@ const SpecificCard = ({ post }) => {
     //pop to display enlarged image
     const enlargeImage = () => {
         mySwal.fire({
+            grow: 'fullscreen',
             imageUrl: post.imageUrl
         })
     }
@@ -158,7 +159,7 @@ const SpecificCard = ({ post }) => {
                     hasImage ?
 
                         <figure>
-                            <figcaption>Cliquez l'image pour voir en grand</figcaption>
+                            <figcaption>Cliquez l'image pour voir en plein écran</figcaption>
                             <img src={post.imageUrl} alt='' onClick={(e) => { enlargeImage(e) }} />
                         </figure>
                         :

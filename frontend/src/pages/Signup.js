@@ -10,6 +10,9 @@ const Signup = () => {
 
     const [passwordShown, setPasswordShown] = useState(false);
 
+    const [mailUsed, setMailUsed] = useState(false);
+    const [accountCreated, setAccountedCreated] = useState(false)
+
     const handleToggle = () => {
         setPasswordShown(!passwordShown)
     }
@@ -18,14 +21,16 @@ const Signup = () => {
     const mySwal = withReactContent(Swal)
 
     const handleSubmit = (e) => {
+        if (mailUsed === true) {
+            setMailUsed(!mailUsed)
+        }
         e.preventDefault();
         axios.post('http://localhost:3001/api/auth/signup', {
             email: e.target.userMail.value,
             password: e.target.userPassword.value
         })
             .then(res => {
-                console.log(e.target.userMail.value)
-                console.log(res)
+                setAccountedCreated(true)
                 // créer une alerte pour confirmer la création de compte, puis renvoyer vers la page Login pour farire la connection
                 mySwal.fire({
                     title: <strong>Votre compte a bien été créé !</strong>,
@@ -34,6 +39,7 @@ const Signup = () => {
             })
             .catch(error => {
                 console.log(error)
+                setMailUsed(true)
             })
     }
     return (
@@ -53,6 +59,12 @@ const Signup = () => {
                 </label>
                 <input type="submit" value="Sign up!" />
             </form>
+            {
+                mailUsed ? <p className='login-error'>This mail is already used</p> : ""
+            }
+            {
+                accountCreated ? <p>Votre compte a bien été créé ! Rendez vous sur la page login pour vous connecter</p> : ""
+            }
             <br />
             <p>Already an account ?</p>
             <NavLink to="/login">

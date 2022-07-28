@@ -15,7 +15,8 @@ const Login = () => {
     let navigate = useNavigate();
 
     const [passwordShown, setPasswordShown] = useState(false);
-    const [credError, setCredError] = useState(false)
+
+    const [credError, setCredError] = useState(false);
 
     const handleToggle = () => {
         setPasswordShown(!passwordShown)
