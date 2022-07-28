@@ -26,6 +26,11 @@
     }
 }
 
+.login-error {
+    font-style: italic;
+    color: $primary-color
+}
+
 .logo {
     max-width: 350px;
     object-fit: cover;

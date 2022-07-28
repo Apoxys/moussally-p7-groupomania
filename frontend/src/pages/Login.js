@@ -15,12 +15,16 @@ const Login = () => {
     let navigate = useNavigate();
 
     const [passwordShown, setPasswordShown] = useState(false);
+    const [credError, setCredError] = useState(false)
 
     const handleToggle = () => {
         setPasswordShown(!passwordShown)
     }
 
     const handleSubmit = (e) => {
+        if (credError === true) {
+            setCredError(!credError)
+        }
         e.preventDefault();
         axios.post('http://localhost:3001/api/auth/login', {
             email: e.target.userMail.value,
@@ -38,6 +42,7 @@ const Login = () => {
             })
             .catch(error => {
                 console.log(error)
+                setCredError(true)
             })
     }
 
@@ -61,7 +66,9 @@ const Login = () => {
                 </label>
                 <input type='submit' value="Log in!" />
             </form>
-
+            {
+                credError ? <p className='login-error'>Wrong password or user mail</p> : ""
+            }
             <p>No account yet ? Create one !</p>
             <NavLink to="/signup">
                 Sign up !
