@@ -85,7 +85,21 @@ button {
 
 //phone design
 @media screen and (max-width:400px) {
+    .navigation {
+        display: flex;
+        border-right: 0;
+        border-bottom: 3px double red;
+        margin-right: 0;
+        padding-right: 0;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+
+    }
+
+
     button {
+        height: fit-content;
+
         .icon {
             height: 35px;
             width: 35px;

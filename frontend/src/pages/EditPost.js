@@ -69,7 +69,7 @@ const EditPost = () => {
         <div className='global'>
             <Nav />
 
-            <div className='maincontent'>
+            <main className='maincontent'>
                 <h1>Ici vous pouvez modifier une publication</h1>
                 <form className='form-create-post' onSubmit={(e) => handleUpdateSubmit(e)} encType="multipart/form-data">
                     <label htmlFor='title'>
@@ -91,7 +91,7 @@ const EditPost = () => {
                     <input className='form-button post' type="submit" value="Envoyer" />
                 </form>
                 <button className='cancel' onClick={() => { navigate("/post/" + post._id) }}>Annuler</button>
-            </div>
+            </main>
         </div >
     );
 };

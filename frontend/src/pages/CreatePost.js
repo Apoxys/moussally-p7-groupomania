@@ -61,7 +61,7 @@ const CreatePost = () => {
     return (
         <div className='global'>
             < Nav />
-            <div className='maincontent'>
+            <main className='maincontent'>
                 <h1>Publiez ici</h1>
                 < form className='form-create-post' onSubmit={(e) => handlePostSubmit(e)} encType="multipart/form-data" >
                     <label htmlFor='title'>
@@ -78,7 +78,7 @@ const CreatePost = () => {
                     </label>
                     <input className='form-button post' type="submit" value="Publier" />
                 </form >
-            </div>
+            </main>
         </div >
     );
 };

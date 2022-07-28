@@ -3,10 +3,23 @@
   font-family: "Lato", sans-serif;
 }
 
+body {
+  margin: 0px;
+}
+
 .global {
   display: flex;
 }
 
+main {
+  margin: 8px;
+}
+
+@media screen and (max-width: 400px) {
+  .global {
+    display: block;
+  }
+}
 .navigation {
   border-right: 3px double #FD2D01;
   margin-right: 10px;
@@ -83,6 +96,18 @@ button:hover {
 }
 
 @media screen and (max-width: 400px) {
+  .navigation {
+    display: flex;
+    border-right: 0;
+    border-bottom: 3px double red;
+    margin-right: 0;
+    padding-right: 0;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+  }
+  button {
+    height: fit-content;
+  }
   button .icon {
     height: 35px;
     width: 35px;
@@ -90,7 +115,6 @@ button:hover {
 }
 .card {
   margin-bottom: 50px;
-  max-width: fit-content;
 }
 .card-article {
   display: flex;
@@ -201,7 +225,6 @@ button:hover {
 }
 
 .maincontent {
-  align-self: center;
   width: 700px;
 }
 .maincontent h1 {
@@ -236,4 +259,10 @@ button:hover {
 .form-create-post .post {
   width: fit-content;
   align-self: center;
+}
+
+@media screen and (max-width: 699px) {
+  .maincontent {
+    width: auto;
+  }
 }/*# sourceMappingURL=index.css.map */

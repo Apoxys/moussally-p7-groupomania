@@ -40,7 +40,20 @@ $tertiary_color : #4E5166;
 }
 
 // réglages appliqués sur toute la page
+body {
+    margin: 0px;
+}
 
 .global {
     display: flex;
+}
+
+main {
+    margin: 8px;
+}
+
+@media screen and (max-width:400px) {
+    .global {
+        display: block;
+    }
 }

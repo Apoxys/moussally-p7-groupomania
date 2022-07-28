@@ -1,5 +1,4 @@
 .maincontent {
-    align-self: center;
     width: 700px;
 
     h1 {
@@ -37,4 +36,11 @@
 
 
 
+}
+
+@media screen and (max-width:699px) {
+
+    .maincontent {
+        width: auto;
+    }
 }

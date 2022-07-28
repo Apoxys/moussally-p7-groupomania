@@ -47,6 +47,9 @@ const Nav = () => {
                     className={(nav) => (nav.isActive ? "nav-active" : "")}>
                     <li>Publications favorites</li>
                 </NavLink> */}
+                {/* <NavLink>
+                    <li>Contacts utiles</li>
+                </NavLink> */}
                 <li>
                     <input className='disconnect' type="submit" value="Disconnect"
                         onClick={handleDisconnect}
