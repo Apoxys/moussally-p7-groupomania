@@ -2,7 +2,9 @@
 
 Bienvenue sur mon repo du projet Groupomania\
 ##PRE-REQUIS\
-Vous aurez besoin de créer un fichier `.env` dans le dossier backend du projet, lequel devra contenir les informations de connexion au serveur et d'authentification
+Vous aurez besoin de créer un fichier `.env` dans le dossier backend du projet, lequel devra contenir les informations de connexion au serveur et d'authentification\
+Vous pouvez également créer un serveur local en utiliser un `dump` de la DB\
+Dans les deux cas, vous devrez me contacter pour obtenir l'une ou l'autre de ces informations
 
 ##FONCTIONNEMENT
 
