@@ -8,15 +8,15 @@ Dans les deux cas, vous devrez me contacter pour obtenir l'une ou l'autre de ces
 
 ##INSTALLATION BACK\
 Créez un fichier `.env` dans le dossier `backend` et mettez y les informations `DB_USERNAME`, `DB_PWD` et `WEB_AUTH_TOKEN`.\
-Ouvrez un terminal dans le dossier `backend` du projet, puis entrez la commande `npm install`.\
+Ouvrez un terminal dans le dossier `backend` du projet, puis entrez la commande `npm install`.
 
-! VERIFIEZ votre ExecutionPolicy avec la commande `Get-ExecutionPolicy` !.\
+! VERIFIEZ votre ExecutionPolicy avec la commande `Get-ExecutionPolicy` !\
 Si la commande vous retourne Restricted, vous ne pourrez pas lancer le serveur avec nodemon, puisque les scripts sont bloqués.\
 Entrez la commande suivante pour changer votre ExecutionPolicy `Set-ExecutionPolicy -Scope CurrentUser  -ExecutionPolicy Unrestricted`.\
 Vous pourrez ensuite lancer le serveur avec la commande `nodemon server`
 
 ##INSTALLATION FRONT\
-Ouvrez un terminal dans le dossier `frontend` du projet, puis entrez la commande `npm install`.\
+Ouvrez un terminal dans le dossier `frontend` du projet, puis entrez la commande `npm install`.
 
 ##FONCTIONNEMENT
 Commencez dans le dossier principal du projet\
