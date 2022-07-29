@@ -1,6 +1,8 @@
 # moussally-p7-groupomania
 
-Bienvenue sur mon repo du projet Groupomania
+Bienvenue sur mon repo du projet Groupomania\
+##PRE-REQUIS\
+Vous aurez besoin de créer un fichier `.env` dans le dossier backend du projet, lequel devra contenir les informations de connexion au serveur et d'authentification
 
 ##FONCTIONNEMENT
 
