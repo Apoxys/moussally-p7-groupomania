@@ -11,7 +11,7 @@ passwordSchema
   .has().digits();
 
 module.exports = (req, res, next) => {
-  console.log(req.body)
+ // console.log(req.body)
   if (passwordSchema.validate(req.body.password)) {
     next();
   } else {
