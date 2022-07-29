@@ -39,6 +39,7 @@ const Signup = () => {
             })
             .catch(error => {
                 console.log(error)
+                mySwal.fire({title: <p>{error.response.data.error}</p>})
                 setMailUsed(true)
             })
     }
