@@ -18,9 +18,9 @@ const SpecificCard = ({ post }) => {
     const navigate = useNavigate();
 
     //contextimport
-    const { currentUser, setCurrentUser } = useContext(userContext)
-    const { userToken, setUserToken } = useContext(userTokenContext)
-    const { isAdmin, setIsAdmin } = useContext(userAdminContext)
+    const { currentUser } = useContext(userContext)
+    const { userToken } = useContext(userTokenContext)
+    const { isAdmin } = useContext(userAdminContext)
 
     //define defaults axios headers
     axios.defaults.headers.common['Authorization'] = userToken
@@ -45,7 +45,7 @@ const SpecificCard = ({ post }) => {
     //Check if users have rights to modify current post
     const checkUserRights = () => {
         console.log(currentUser, post.authorId)
-        if (isAdmin === 'true' || currentUser == post.authorId) {
+        if (isAdmin === 'true' || currentUser === post.authorId) {
             setCanModify(true)
         }
         console.log('check: ', canModify)

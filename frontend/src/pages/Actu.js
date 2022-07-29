@@ -24,7 +24,7 @@ const Actu = () => {
             setCurrentUser(localStorage.userConnected)
             setUserToken(localStorage.userToken)
             setIsAdmin(localStorage.isAdmin)
-            console.log("1", typeof (isAdmin), isAdmin)
+            // console.log("1", typeof (isAdmin), isAdmin)
 
         }
 
@@ -57,7 +57,7 @@ const Actu = () => {
             <main>
 
                 {
-                    isAdmin == 'true' ?
+                    isAdmin === 'true' ?
                         <h1>Bienvenue, administrateur</h1>
                         :
                         <h1>Bienvenue, utilisateur</h1>

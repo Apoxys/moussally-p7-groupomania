@@ -7,7 +7,7 @@ import Nav from '../components/Nav';
 const EditPost = () => {
 
     //Define context and set-headers
-    const { userToken, setUserToken } = useContext(userTokenContext)
+    const { userToken } = useContext(userTokenContext)
     axios.defaults.headers.common['Authorization'] = userToken
 
     let URLparams = useParams()

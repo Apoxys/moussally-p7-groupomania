@@ -8,7 +8,7 @@ import { userTokenContext } from '../context/UserContext';
 
 const ThisPost = () => {
 
-    const { userToken, setUserToken } = useContext(userTokenContext)
+    const { userToken } = useContext(userTokenContext)
     const [postData, setPostData] = useState({});
 
     // Fetch data from specific post

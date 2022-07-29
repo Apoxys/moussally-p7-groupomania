@@ -10,8 +10,8 @@ const CreatePost = () => {
     const [authorId, setAuthorId] = useState()
     const [postImgInput, setPostImgInput] = useState()
     const [imgPostFile, setImgPostFile] = useState()
-    const { currentUser, setCurrentUser } = useContext(userContext)
-    const { userToken, setUserToken } = useContext(userTokenContext)
+    const { currentUser } = useContext(userContext)
+    const { userToken } = useContext(userTokenContext)
 
     //popup alert MySweetAlert with react
     const mySwal = withReactContent(Swal)
@@ -38,7 +38,7 @@ const CreatePost = () => {
 
         axios.post('http://localhost:3001/api/posts', formData)
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 mySwal.fire({
                     title: 'Your post is created !'
                 })

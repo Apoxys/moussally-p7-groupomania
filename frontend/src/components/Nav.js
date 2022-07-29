@@ -5,7 +5,7 @@ import planetLogo from '../assets/GroupoLogos/red-planet-logo.png';
 
 const Nav = () => {
 
-    const { currentUser, setCurrentUser } = useContext(userContext)
+    const { currentUser } = useContext(userContext)
     const [collapsed, setCollapsed] = useState(true)
 
     const navigate = useNavigate()
@@ -28,9 +28,9 @@ const Nav = () => {
         <div className="navigation">
             <button onClick={(e) => handleCollapse(e)}>
                 <img className='icon' src={planetLogo} alt='' />
-                {collapsed == true ? "Menu" : "Close Menu"}
+                {collapsed === true ? "Menu" : "Close Menu"}
             </button>
-            <ul className={collapsed == true ? "collapsed" : "open"} >
+            <ul className={collapsed === true ? "collapsed" : "open"} >
                 <NavLink to="/"
                     className={(nav) => (nav.isActive ? "nav-active" : "")}>
                     <li>Actualité</li>

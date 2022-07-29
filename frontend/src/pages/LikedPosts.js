@@ -1,6 +1,5 @@
 // NOT USED IN ALPHA PROJECT
 
-
 import React, { useState, useEffect } from 'react';
 import Card from '../components/Card';
 import Nav from '../components/Nav';
