@@ -13,6 +13,7 @@ La aussi vous devrez me contacter pour obtenir le dossier correspondant
 Créez un fichier `.env` dans le dossier `backend` et mettez y les informations `DB_USERNAME`, `DB_PWD` et `WEB_AUTH_TOKEN`.
 Ouvrez un terminal dans le dossier `backend` du projet, puis entrez la commande `npm install`.
 
+*Pour Windows*
 *! VERIFIEZ votre ExecutionPolicy avec la commande `Get-ExecutionPolicy` !*
 Si la commande vous retourne Restricted, vous ne pourrez pas lancer le serveur avec nodemon, puisque les scripts sont bloqués.
 Entrez la commande suivante pour changer votre ExecutionPolicy `Set-ExecutionPolicy -Scope CurrentUser  -ExecutionPolicy Unrestricted`.
