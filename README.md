@@ -6,7 +6,7 @@ Vous aurez besoin de créer un fichier `.env` dans le dossier backend du projet,
 Vous pouvez également créer un serveur local en utilisant un `dump` de la DB\
 Dans les deux cas, vous devrez me contacter pour obtenir l'une ou l'autre de ces informations
 
-##INSTALLATION BACK
+##INSTALLATION BACK\
 Créez un fichier `.env` dans le dossier `backend` et mettez y les informations `DB_USERNAME`, `DB_PWD` et `WEB_AUTH_TOKEN`.\
 Ouvrez un terminal dans le dossier `backend` du projet, puis entrez la commande `npm install`.\
 
@@ -15,7 +15,7 @@ Si la commande vous retourne Restricted, vous ne pourrez pas lancer le serveur a
 Entrez la commande suivante pour changer votre ExecutionPolicy `Set-ExecutionPolicy -Scope CurrentUser  -ExecutionPolicy Unrestricted`.\
 Vous pourrez ensuite lancer le serveur avec la commande `nodemon server`
 
-##INSTALLATION FRONT
+##INSTALLATION FRONT\
 Ouvrez un terminal dans le dossier `frontend` du projet, puis entrez la commande `npm install`.\
 
 ##FONCTIONNEMENT
