@@ -24,7 +24,6 @@ const Card = ({ post }) => {
                     <p>{post.body}</p>
                 </section>
                 <img src={post.imageUrl} alt='' />
-                {/* Image of post {post.imageUrl} */}
             </article>
             <aside className='card-aside'>
                 <div className='card-aside-likes'>

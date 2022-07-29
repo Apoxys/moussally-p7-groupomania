@@ -23,7 +23,7 @@ const YourPosts = () => {
         axios.get('http://localhost:3001/api/posts/user-posts')
             .then(res => {
                 setYourData(res.data)
-                console.log(yourData)
+                // console.log(yourData)
             })
             .catch(error => {
                 console.log(error)

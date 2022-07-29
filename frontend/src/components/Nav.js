@@ -12,10 +12,11 @@ const Nav = () => {
 
     const handleDisconnect = () => {
         localStorage.clear("userConnected")
-        console.log('Nav localStorage: ', localStorage)
+        // console.log('Nav localStorage: ', localStorage)
         navigate("/login")
     }
 
+    //collapse or open menu
     const handleCollapse = () => {
         if (collapsed === true) {
             setCollapsed(false)

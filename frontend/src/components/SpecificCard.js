@@ -17,7 +17,6 @@ const SpecificCard = ({ post }) => {
 
     const navigate = useNavigate();
 
-    //contextimport
     const { currentUser } = useContext(userContext)
     const { userToken } = useContext(userTokenContext)
     const { isAdmin } = useContext(userAdminContext)
@@ -44,21 +43,21 @@ const SpecificCard = ({ post }) => {
 
     //Check if users have rights to modify current post
     const checkUserRights = () => {
-        console.log(currentUser, post.authorId)
+        // console.log(currentUser, post.authorId)
         if (isAdmin === 'true' || currentUser === post.authorId) {
             setCanModify(true)
         }
-        console.log('check: ', canModify)
+        // console.log('check: ', canModify)
     }
 
-    //check if ther is an image in post
+    //check if there is an image in post
     const checkImg = () => {
         if (post.imageUrl === '') {
             setHasImage(false)
         } else {
             setHasImage(true)
         }
-        console.log('is image ? ', hasImage)
+        // console.log('is image ? ', hasImage)
     }
 
     // Date formater to display FR date
@@ -76,7 +75,7 @@ const SpecificCard = ({ post }) => {
     //delete - likes - dislikes LOGIC
     //delete logic
     const deletePostHandler = () => {
-        console.log(post._id)
+        // console.log(post._id)
         mySwal.fire({
             title: 'Do you really want to delete this post?',
             showDenyButton: true,

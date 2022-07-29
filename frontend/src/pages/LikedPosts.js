@@ -13,7 +13,7 @@ const LikedPosts = () => {
     const getLikedData = () => {
         axios.get('http://localhost:3001/api/posts')
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 setLikedData(res.data);
             })
             .catch(error => {

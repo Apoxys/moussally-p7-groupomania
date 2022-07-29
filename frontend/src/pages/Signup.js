@@ -31,7 +31,7 @@ const Signup = () => {
         })
             .then(res => {
                 setAccountedCreated(true)
-                // créer une alerte pour confirmer la création de compte, puis renvoyer vers la page Login pour farire la connection
+                // Pop-up to confirm account creation, then links user to Login page
                 mySwal.fire({
                     title: <strong>Votre compte a bien été créé !</strong>,
                     html: <p>Rendez vous sur la page <a href="/login">Login</a> pour vous connecter</p>
@@ -39,7 +39,7 @@ const Signup = () => {
             })
             .catch(error => {
                 console.log(error)
-                mySwal.fire({title: <p>{error.response.data.error}</p>})
+                mySwal.fire({ title: <p>{error.response.data.error}</p> })
                 setMailUsed(true)
             })
     }

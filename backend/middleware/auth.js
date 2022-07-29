@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 
+// Take the token sent in request and extract the userId from it
 module.exports = (req, res, next) => {
 
   try {
@@ -7,7 +8,6 @@ module.exports = (req, res, next) => {
     const decodedToken = jwt.verify(token, process.env.WEB_AUTH_TOKEN);
     const userId = decodedToken.userId;
     req.auth = { userId };
-    // console.log(token, decodedToken, userId, req.auth)
     if (req.body.userId && req.body.userId !== userId) {
       throw "unvalid user ID!";
     } else {

@@ -1,4 +1,4 @@
-// ici les réglages généraux
+// GENREAL SETTINGS
 
 //font
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
@@ -8,13 +8,13 @@
 }
 
 
-//couleurs principales (cf specifications techniques)
+// mains colors
 $primary_color : #FD2D01;
 $secondary_color : #FFD7D7;
 $tertiary_color : #4E5166;
 
 
-// mixins générales
+// mixins 
 @mixin noStyleLinks {
     a {
         text-decoration: none;
@@ -39,7 +39,7 @@ $tertiary_color : #4E5166;
     margin: 0 5px 0 5px;
 }
 
-// réglages appliqués sur toute la page
+// general page settings
 body {
     margin: 0px;
 }

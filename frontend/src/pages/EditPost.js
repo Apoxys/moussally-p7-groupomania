@@ -15,12 +15,10 @@ const EditPost = () => {
 
     const [post, setPost] = useState({})
 
-    //import from createpost page / used to update
     const [title, setTitle] = useState("")
     const [body, setBody] = useState("")
     const [postImgInput, setPostImgInput] = useState()
     const [imgPostFile, setImgPostFile] = useState()
-    //endofimport
 
 
 
@@ -38,7 +36,7 @@ const EditPost = () => {
     //imported and modified from create post /used to update
     const handlePostImg = (e) => {
         e.preventDefault()
-        setPostImgInput(e.target.value) //permet de récupérer postImgInput et la mettre en defaultValue de <img/>
+        setPostImgInput(e.target.value) //get postImgInput and set is as defaultValue in <img/>
         setImgPostFile(e.target.files[0])
     };
 
@@ -62,7 +60,7 @@ const EditPost = () => {
 
     useEffect(() => {
         getDataToEdit();
-        console.log(postImgInput)
+        // console.log(postImgInput)
     }, [])
 
     return (

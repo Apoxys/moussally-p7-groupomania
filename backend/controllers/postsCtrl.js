@@ -39,7 +39,6 @@ exports.createPost = (req, res, next) => {
 //Update
 exports.modifyPost = (req, res, next) => {
     let postObject = req.body
-    // console.log(req.file)
     post.findOne({ _id: req.params.id })
         .then(oldPost => {
             if (req.file) {
@@ -122,7 +121,6 @@ exports.likes = (req, res, next) => {
                     if (req.body.like == 1) {
                         // if users already liked, cancels the like
                         if (currentUser.userLiked.includes(currentPostId)) {
-                            // console.log("you already liked this");
                             currentPost.likes--
                             const thisPostIndex = currentUser.userLiked.indexOf(currentPost._id)
                             currentUser.userLiked.splice(thisPostIndex, 1)
@@ -142,7 +140,6 @@ exports.likes = (req, res, next) => {
                     if (req.body.like == -1) {
                         // if users already disliked, cancels the dislike
                         if (currentUser.userDisliked.includes(currentPostId)) {
-                            // console.log("you already disliked this");
                             currentPost.dislikes--
                             const thisPostIndex = currentUser.userDisliked.indexOf(currentPost._id)
                             currentUser.userDisliked.splice(thisPostIndex, 1)

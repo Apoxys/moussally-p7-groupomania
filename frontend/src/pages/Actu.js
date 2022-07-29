@@ -12,8 +12,7 @@ const Actu = () => {
     const { currentUser, setCurrentUser } = useContext(userContext)
     const { userToken, setUserToken } = useContext(userTokenContext)
     const { isAdmin, setIsAdmin } = useContext(userAdminContext)
-    // setCurrentUser(localStorage.getItem("userConnected"))
-    // setUserToken(localStorage.getItem("userToken"))
+
     axios.defaults.headers.common['Authorization'] = userToken
 
     const [data, setData] = useState([]);

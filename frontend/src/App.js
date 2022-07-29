@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AdminProvider, DataProvider, TokenProvider, userContext } from "./context/UserContext";
+import { AdminProvider, DataProvider, TokenProvider } from "./context/UserContext";
 
 
 import Actu from "./pages/Actu";
@@ -36,7 +36,7 @@ const App = () => {
                             <Route path={"/post/:id"} element={<ThisPost />} />
                             <Route path={"/edit-post/:id"} element={<EditPost post />} />
                             <Route path={"/myposts/:id" + currentUser} element={<YourPosts />} />
-                            <Route path={"/favorites/:id" + currentUser} element={<LikedPosts />} />
+                            {/* <Route path={"/favorites/:id" + currentUser} element={<LikedPosts />} /> */}
 
                             <Route path="*" element={<NotFound />} />
                         </Routes>

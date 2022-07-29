@@ -11,11 +11,9 @@ passwordSchema
   .has().digits();
 
 module.exports = (req, res, next) => {
- // console.log(req.body)
   if (passwordSchema.validate(req.body.password)) {
     next();
   } else {
-    // window.alert('Votre mot de passe ne comprend pas les critères suivants :'+ passwordSchema.validate(req.body.password, { list: true }))
     res.status(400).json({
       error:
         "password failed those specifics : " +

@@ -18,6 +18,7 @@ const Login = () => {
 
     const [credError, setCredError] = useState(false);
 
+    //toggle to show or hide password input
     const handleToggle = () => {
         setPasswordShown(!passwordShown)
     }
@@ -62,7 +63,6 @@ const Login = () => {
                 <label className='logup-form-pwd' htmlFor="userPassword">
                     Password
                     <input type={passwordShown ? 'text' : 'password'} name="userPassword" required />
-                    {/* icone oeil au clic change le type  */}
                     <span onClick={() => handleToggle()}>{passwordShown ? <FaEyeSlash /> : <FaEye />}</span>
                 </label>
                 <input type='submit' value="Log in!" />

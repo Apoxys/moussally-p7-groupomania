@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const user = require("../models/usersModel");
 
 exports.signup = (req, res, next) => {
-    bcrypt.hash(req.body.password, 10) // how to add a string to password just before hash for max security ?
+    bcrypt.hash(req.body.password, 10)
         .then(hash => {
             const thisNewUser = new user({
                 lastName: req.body.lastName,

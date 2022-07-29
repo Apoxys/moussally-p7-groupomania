@@ -21,7 +21,7 @@ const ThisPost = () => {
         axios.get(`http://localhost:3001/api/posts/${URLparams.id}`)
             .then(res => {
                 setPostData(res.data)
-                console.log(postData)
+                // console.log(postData)
             })
             .catch(error => {
                 console.log(error)
