@@ -3,7 +3,8 @@
 Bienvenue sur mon repo du projet Groupomania
 
 ## PRE-REQUIS
-Vous trouverez un fichier `example.env` dans le dossier backend du projet. Ce fichier est un template du fichier `.env` nécessaire. Vous pouvez modifier le nom de ce fichier pour qu'il s'appelle `.env`, ou créer un `.env` qui reprend les mêmes entrées.
+Vous trouverez un fichier `example.env` dans le dossier `backend` du projet. Ce fichier est un template du fichier `.env` nécessaire.
+Vous pouvez modifier le nom de ce fichier pour qu'il s'appelle `.env`, ou créer un `.env` qui reprend les mêmes entrées.
 Pour compléter le fichier `.env`, vous devrez me contacter pour obtenir les informations
 
 Vous pouvez également créer un serveur local en utilisant un `dump` de la DB
