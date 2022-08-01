@@ -54,25 +54,25 @@ const Login = () => {
     return (
         <div className='logup'>
             <img className='logo' src={logo} alt='logo groupomania' />
-            <h1>Login page</h1>
+            <h1>Page de connexion</h1>
             <form className='logup-form' onSubmit={(e) => handleSubmit(e)}>
                 <label className='logup-form-email' htmlFor='userMail'>
                     E-mail
                     <input type="text" name="userMail" required />
                 </label>
                 <label className='logup-form-pwd' htmlFor="userPassword">
-                    Password
+                    Mot de passe
                     <input type={passwordShown ? 'text' : 'password'} name="userPassword" required />
                     <span onClick={() => handleToggle()}>{passwordShown ? <FaEyeSlash /> : <FaEye />}</span>
                 </label>
-                <input type='submit' value="Log in!" />
+                <input type='submit' value="Connexion" />
             </form>
             {
-                credError ? <p className='login-error'>Wrong password or user mail</p> : ""
+                credError ? <p className='login-error'>Erreur mot de passe ou mail</p> : ""
             }
-            <p>No account yet ? Create one !</p>
+            <p>Pas encore de compte ? Créez en un !</p>
             <NavLink to="/signup">
-                Sign up !
+                S'inscrire !
             </NavLink>
 
         </div>

@@ -34,7 +34,7 @@ const Signup = () => {
                 // Pop-up to confirm account creation, then links user to Login page
                 mySwal.fire({
                     title: <strong>Votre compte a bien été créé !</strong>,
-                    html: <p>Rendez vous sur la page <a href="/login">Login</a> pour vous connecter</p>
+                    html: <p>Rendez vous sur la page de <a href="/login">connexion</a> pour vous connecter</p>
                 })
             })
             .catch(error => {
@@ -46,30 +46,30 @@ const Signup = () => {
     return (
         <div className='logup'>
             <img className='logo' src={logo} alt='logo groupomania' />
-            <h1>Signup page</h1>
+            <h1>Page d'inscription</h1>
             <form className='logup-form' onSubmit={(e) => handleSubmit(e)}>
                 <label className='logup-form-email' htmlFor='userMail'>
                     E-mail
                     <input type="text" name="userMail" required />
                 </label>
                 <label className='logup-form-pwd' htmlFor="userPassword">
-                    Password
+                    Mot de passe
                     <input type={passwordShown ? 'text' : 'password'} name="userPassword" required />
                     <span onClick={() => handleToggle()}>{passwordShown ? <FaEyeSlash /> : <FaEye />}</span>
                 </label>
                 <small>Votre mot de passe doit contenir : <br /> 8 caractères minimum, <br />au moins une majuscule, <br />au moins un chiffre, <br />et aucun espace</small>
-                <input type="submit" value="Sign up!" />
+                <input type="submit" value="S'inscrire" />
             </form>
             {
-                mailUsed ? <p className='login-error'>This mail is already used</p> : ""
+                mailUsed ? <p className='login-error'>Ce mail est déjà utilisé</p> : ""
             }
             {
-                accountCreated ? <p>Votre compte a bien été créé ! Rendez vous sur la page login pour vous connecter</p> : ""
+                accountCreated ? <p>Votre compte a bien été créé ! Rendez vous sur la page de connexion pour vous connecter</p> : ""
             }
             <br />
-            <p>Already an account ?</p>
+            <p>Vous avez déjà un compte ?</p>
             <NavLink to="/login">
-                Log in !
+                Connectez vous !
             </NavLink>
         </div>
     );

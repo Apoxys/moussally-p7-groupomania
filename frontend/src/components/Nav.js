@@ -52,7 +52,7 @@ const Nav = () => {
                     <li>Contacts utiles</li>
                 </NavLink> */}
                 <li>
-                    <input className='disconnect' type="submit" value="Disconnect"
+                    <input className='disconnect' type="submit" value="Déconnexion"
                         onClick={handleDisconnect}
                     />
                 </li>
