@@ -30,7 +30,7 @@ const Actu = () => {
         axios.get('http://localhost:3001/api/posts')
             .then(res => {
                 setData(res.data)
-                console.log("data is : ", res.data)
+                // console.log("data is : ", res.data)
 
             })
             .catch(error => {

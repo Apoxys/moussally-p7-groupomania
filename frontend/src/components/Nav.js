@@ -12,7 +12,7 @@ const Nav = () => {
 
     const handleDisconnect = () => {
         localStorage.clear("userConnected")
-        // console.log('Nav localStorage: ', localStorage)
+        console.log('Nav localStorage disconnected: ', localStorage)
         navigate("/login")
     }
 

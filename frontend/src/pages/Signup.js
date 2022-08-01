@@ -56,8 +56,8 @@ const Signup = () => {
                     Password
                     <input type={passwordShown ? 'text' : 'password'} name="userPassword" required />
                     <span onClick={() => handleToggle()}>{passwordShown ? <FaEyeSlash /> : <FaEye />}</span>
-
                 </label>
+                <small>Votre mot de passe doit contenir : <br /> 8 caractères minimum, <br />au moins une majuscule, <br />au moins un chiffre, <br />et aucun espace</small>
                 <input type="submit" value="Sign up!" />
             </form>
             {

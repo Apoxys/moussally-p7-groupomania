@@ -77,17 +77,17 @@ const SpecificCard = ({ post }) => {
     const deletePostHandler = () => {
         // console.log(post._id)
         mySwal.fire({
-            title: 'Do you really want to delete this post?',
+            title: 'Voulez vous vraiment supprimer cette publication ?',
             showDenyButton: true,
-            showCancelButton: true,
-            confirmButtonText: 'Delete',
-            denyButtonText: `Don't delete`,
+            showCancelButton: false,
+            confirmButtonText: 'Supprimer',
+            denyButtonText: `Ne pas supprimer`,
         })
             .then((result) => {
                 if (result.isConfirmed) {
                     axios.delete("http://localhost:3001/api/posts/" + post._id)
                         .then(res => {
-                            mySwal.fire('Post deleted')
+                            mySwal.fire('Publication supprimée')
                             navigate("/")
                         })
                         .catch(error => {
@@ -95,7 +95,7 @@ const SpecificCard = ({ post }) => {
                         })
 
                 } else if (result.isDenied) {
-                    mySwal.fire('Not deleted')
+                    mySwal.fire('Publication non supprimée')
                 }
             })
     };
@@ -192,8 +192,8 @@ const SpecificCard = ({ post }) => {
                 {
                     canModify ?
                         <div className='specific-card-modify'>
-                            <button onClick={() => { navigate("/edit-post/" + post._id) }}>Modify post</button>
-                            <button onClick={() => deletePostHandler()}>Delete post</button>
+                            <button onClick={() => { navigate("/edit-post/" + post._id) }}>Modifier la publication</button>
+                            <button onClick={() => deletePostHandler()}>Supprimer la publication</button>
                         </div>
                         :
                         ""
